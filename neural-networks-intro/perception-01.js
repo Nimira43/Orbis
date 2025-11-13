@@ -33,3 +33,12 @@ const weights = [0.1, 0.3]
 // Here we start with bias = 0.5, a small positive tilt toward predicting 'pencil'.
 
 const bias = 0.5
+
+// Define the learning rate.
+// This controls how big the weight and bias adjustments are during training.
+// A small value (like 0.1) means the perceptron learns slowly and carefully,
+// making gentle corrections each time it sees an error.
+// If the learning rate were larger, updates would be more aggressive,
+// but risk overshooting the best values.
+// Here we choose 0.1 to keep the training stable and gradual.
+const learningRate = 0.1
