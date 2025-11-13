@@ -9,7 +9,6 @@ const trainInputs = [
   [1, 2],
   [2, 1]
 ]
-//----------------------------------------------------
 
 // Defining the training labels: the 'answers' for each input.
 // Here we add meaning: 1 = pencil, 0 = eraser.
@@ -17,8 +16,6 @@ const trainInputs = [
 // based on the input features above.
 
 const trainLabels = [1, 1, 0, 0, 0]
-
-//----------------------------------------------------
 
 // PERCEPTRON CLASS
 // This class bundles together everything the perceptron needs:
@@ -79,6 +76,9 @@ class Perceptron {
       for (let j = 0; j < inputs.length; j++) {
         sum += inputs[j] * this.weights[j]
       }
+
+      // raw weighted sum + bias for each input.
+      console.log(sum)
 
       // Apply activation function: turn raw sum into a crisp prediction.
       const yPredicted = this.activationFunction(sum)
