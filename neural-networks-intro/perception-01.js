@@ -21,10 +21,10 @@ const trainLabels = [1, 1, 0, 0, 0]
 // These are the parameters that control how much importance is given to each input feature.
 // - weights[0] corresponds to the first feature (x1).
 // - weights[1] corresponds to the second feature (x2).
-// At the start, we just pick small values (0.1 and 0.3).
+// At the start, we just pick small values (0.1 and -0.3).
 // The perceptron will adjust these during training to better separate pencils from erasers.
 
-const weights = [0.1, 0.3] 
+const weights = [0.1, -0.3] 
 
 // Defining the bias.
 // The bias is like a baseline offset: it shifts the decision boundary up or down.
@@ -41,4 +41,14 @@ const bias = 0.5
 // If the learning rate were larger, updates would be more aggressive,
 // but risk overshooting the best values.
 // Here we choose 0.1 to keep the training stable and gradual.
+
 const learningRate = 0.1
+
+
+class Perceptron {
+  constructor() {
+    this.weight = [0.1, -0.3]
+    this.bias = 0.5
+    this.learningRate = 0.1
+  }
+}
