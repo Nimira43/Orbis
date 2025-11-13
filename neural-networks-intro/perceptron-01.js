@@ -47,7 +47,13 @@ class Perceptron {
     this.learningRate = learningRate
   }
 
-  activationFunction() {}
+  activationFunction(x) {
+    return (
+      x >= 0
+        ? 1
+        : 0
+    )
+  }
 
 
 
@@ -59,7 +65,7 @@ class Perceptron {
   // - The result is the raw "sum" before applying an activation function.
   // Right now, we simply log this sum to see what the perceptron is calculating.
 
-  train(trainData) {
+  train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
       let sum = this.bias
       let inputs = trainData[i]
@@ -72,11 +78,17 @@ class Perceptron {
       // Log the raw sum for inspection.
       // This shows how strongly the perceptron leans toward "pencil" (positive sum)
       // or "eraser" (negative sum) before applying the step function.
-      console.log(sum)
+
+      yPredicted = this.activationFunction(sum)
+      yTrueValue = trainLabels[i]
+
+      if (yTrueValue != yPredicted) {
+        
+      }
     }
   }
 }
 
 const perceptron = new Perceptron()
 
-perceptron.train(trainInputs)
+perceptron.train(trainInputs, trainLabels)
