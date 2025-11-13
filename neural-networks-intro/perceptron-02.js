@@ -33,17 +33,8 @@ class Perceptron {
 
   train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
-      let sum = this.bias
-
       let inputs = trainData[i]
-
-      for (let j = 0; j < inputs.length; j++) {
-        sum += inputs[j] * this.weights[j]
-      }
-
-      const yPredicted = this.activationFunction(sum)
-
-
+      const yPredicted = this.predict(inputs)
       const yTrueValue = trainLabels[i]
      
       if (yTrueValue != yPredicted) {
