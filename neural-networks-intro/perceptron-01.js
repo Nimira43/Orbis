@@ -69,7 +69,6 @@ class Perceptron {
       // This shows how strongly the perceptron leans toward "pencil" (positive sum)
       // or "eraser" (negative sum) before applying the step function.
       console.log(sum)
-      console.log(sum)
     }
   }
 }
