@@ -10,9 +10,9 @@ const trainInputs = (
   [2, 1]
 )
 
-// Next, define the labels (the 'answers') for each input.
-// These are the target outputs the perceptron should learn to predict.
-// 1 means the input belongs to the positive class, 0 means the negative class.
-// The order of labels matches the order of inputs above.
+// Defining the training labels: the 'answers' for each input.
+// Here we add meaning: 1 = pencil, 0 = eraser.
+// So the perceptron is learning to distinguish pencils from erasers
+// based on the input features above.
 
 const trainLabels = [1, 1, 0, 0, 0]
