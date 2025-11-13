@@ -57,6 +57,10 @@ class Perceptron {
       }
     }
   }
+
+  calculateAccuracy() {
+    
+  }
 }
 
 // Create perceptron, train once, log final state.
