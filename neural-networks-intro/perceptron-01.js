@@ -47,6 +47,10 @@ class Perceptron {
     this.learningRate = learningRate
   }
 
+  activationFunction() {}
+
+
+
   // TRAIN METHOD
   // This method loops through the training data.
   // For each input pair [x1, x2]:
