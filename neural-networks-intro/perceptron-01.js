@@ -84,8 +84,10 @@ class Perceptron {
 
       if (yTrueValue != yPredicted) {
         for (let k = 0; k < this.weights.length; i++) {
-          
+          this.weights[k] += this.learningRate * (yTrueValue - yPredicted) * inputs[k] 
         }
+
+        
       }
     }
   }
