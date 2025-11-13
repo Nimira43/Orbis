@@ -36,9 +36,12 @@ class Perceptron {
     this.learningRate = learningRate
   }
   train(trainData) {
+    
+
+    }
   }
 }
 
 const perceptron = new Perceptron()
 
-
+perceptron.train(trainInputs)
