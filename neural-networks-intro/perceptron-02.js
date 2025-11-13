@@ -63,6 +63,10 @@ class Perceptron {
 
     for (let i = 0; i < inputs.length; i++) {
       const yPredicted = this.predict(inputs[i])
+
+      if (yPredicted === labels[i]) {
+        correct++
+      }
     }
 
   }
