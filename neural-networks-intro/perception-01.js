@@ -37,7 +37,10 @@ class Perceptron {
   }
   train(trainData) {
     for (let i = 0; i < trainData.length; i++) {
+      let sum = this.bias
+      let inputs = trainData[i]
 
+      for (let j = 0; j < inputs.length; j++)
     }
   }
 }
