@@ -78,3 +78,4 @@ perceptron.train(trainInputs, trainLabels)
 console.log(perceptron)
 
 const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
+console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
