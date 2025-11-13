@@ -23,22 +23,29 @@ class Perceptron {
     )
   }
 
+  predict(inputs) {
+    for (let j = 0; j < inputs.length; j++) {
+      sum += inputs[j] * this.weights[j]
+    }
+
+    const yPredicted = this.activationFunction(sum)
+  }
+
   train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
       let sum = this.bias
+
       let inputs = trainData[i]
 
       for (let j = 0; j < inputs.length; j++) {
         sum += inputs[j] * this.weights[j]
       }
 
-      console.log(sum)
       const yPredicted = this.activationFunction(sum)
-      const yTrueValue = trainLabels[i]
-      console.log(
-        `Input: [${inputs.join(', ')}] | Raw sum: ${sum.toFixed(2)} | Predicted: ${yPredicted} | True: ${yTrueValue}`
-      )
 
+
+      const yTrueValue = trainLabels[i]
+     
       if (yTrueValue != yPredicted) {
 
         for (let k = 0; k < this.weights.length; k++) {
