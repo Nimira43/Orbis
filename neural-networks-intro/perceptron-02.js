@@ -24,11 +24,11 @@ class Perceptron {
   }
 
   predict(inputs) {
+    let sum = this.bias
     for (let j = 0; j < inputs.length; j++) {
       sum += inputs[j] * this.weights[j]
     }
-
-    const yPredicted = this.activationFunction(sum)
+    return this.activationFunction(sum)
   }
 
   train(trainData, trainLabels) {
