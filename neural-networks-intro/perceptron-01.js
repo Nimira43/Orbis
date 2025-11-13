@@ -66,8 +66,9 @@ class Perceptron {
   // For each input pair [x1, x2]:
   // - Start with the bias (baseline tilt).
   // - Add the weighted contribution of each input feature.
-  // - The result is the raw "sum" before applying an activation function.
-  // Right now, we simply log this sum to see what the perceptron is calculating.
+  // - Apply the activation function to make a prediction.
+  // - Compare prediction to the true label.
+  // - If wrong, adjust weights and bias using the perceptron learning rule.
 
   train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
@@ -79,18 +80,23 @@ class Perceptron {
         sum += inputs[j] * this.weights[j]
       }
 
-      // Log the raw sum for inspection.
-      // This shows how strongly the perceptron leans toward "pencil" (positive sum)
-      // or "eraser" (negative sum) before applying the step function.
-
+      // Apply activation function: turn raw sum into a crisp prediction.
       const yPredicted = this.activationFunction(sum)
+
+      // Get the true label for this input.
       const yTrueValue = trainLabels[i]
 
+      // If prediction is wrong, update weights and bias.
       if (yTrueValue != yPredicted) {
+
+        // Adjust each weight:
+        // new_weight = old_weight + learningRate * (error) * input
         for (let k = 0; k < this.weights.length; k++) {
           this.weights[k] += this.learningRate * (yTrueValue - yPredicted) * inputs[k] 
         }
 
+        // Adjust bias:
+        // new_bias = old_bias + learningRate * (error)
         this.bias += this.learningRate * (yTrueValue - yPredicted)
       }
     }
