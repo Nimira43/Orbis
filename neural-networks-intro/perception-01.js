@@ -25,3 +25,11 @@ const trainLabels = [1, 1, 0, 0, 0]
 // The perceptron will adjust these during training to better separate pencils from erasers.
 
 const weights = [0.1, 0.3] 
+
+// Defining the bias.
+// The bias is like a baseline offset: it shifts the decision boundary up or down.
+// Even if all inputs were zero, the bias ensures the perceptron can still output 1 or 0.
+// Think of it as the perceptron's 'default leaning' before considering any features.
+// Here we start with bias = 0.5, a small positive tilt toward predicting 'pencil'.
+
+const bias = 0.5
