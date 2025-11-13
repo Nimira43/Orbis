@@ -79,8 +79,8 @@ class Perceptron {
       // This shows how strongly the perceptron leans toward "pencil" (positive sum)
       // or "eraser" (negative sum) before applying the step function.
 
-      let yPredicted = this.activationFunction(sum)
-      let yTrueValue = trainLabels[i]
+      const yPredicted = this.activationFunction(sum)
+      const yTrueValue = trainLabels[i]
 
       if (yTrueValue != yPredicted) {
         for (let k = 0; k < this.weights.length; i++) {
