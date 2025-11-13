@@ -10,12 +10,16 @@ const trainInputs = (
   [2, 1]
 )
 
+
+
 // Defining the training labels: the 'answers' for each input.
 // Here we add meaning: 1 = pencil, 0 = eraser.
 // So the perceptron is learning to distinguish pencils from erasers
 // based on the input features above.
 
 const trainLabels = [1, 1, 0, 0, 0]
+
+
 
 // PERCEPTRON CLASS
 // This class bundles together everything the perceptron needs:
@@ -24,7 +28,7 @@ const trainLabels = [1, 1, 0, 0, 0]
 // - learningRate: how quickly it adjusts when it makes mistakes
 
 class Perceptron {
-  constructor() {
+  constructor(learningRate = 0.1) {
     // Initial weights: small starting values.
     // weight[0] applies to the first feature (x1).
     // weight[1] applies to the second feature (x2).
@@ -38,6 +42,8 @@ class Perceptron {
 
     // Learning rate: controls the size of adjustments during training.
     // With 0.1, the perceptron learns carefully and gradually.
-    this.learningRate = 0.1
+    this.learningRate = learningRate
   }
 }
+
+const perceptron = new Perceptron()
