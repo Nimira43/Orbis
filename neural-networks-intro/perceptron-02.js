@@ -68,7 +68,7 @@ class Perceptron {
         correct++
       }
     }
-
+    return (correct / inputs.length) * 100
   }
 }
 
