@@ -77,14 +77,16 @@ class Perceptron {
         sum += inputs[j] * this.weights[j]
       }
 
-      // raw weighted sum + bias for each input.
-      console.log(sum)
-
       // Apply activation function: turn raw sum into a crisp prediction.
       const yPredicted = this.activationFunction(sum)
 
       // Get the true label for this input.
       const yTrueValue = trainLabels[i]
+
+      // Log the perceptron's thought process for this input.
+      console.log(
+        `Input: [${inputs.join(', ')}] | Raw sum: ${sum.toFixed(2)} | Predicted: ${yPredicted} | True: ${yTrueValue}`
+      )
 
       // If prediction is wrong, update weights and bias.
       if (yTrueValue != yPredicted) {
