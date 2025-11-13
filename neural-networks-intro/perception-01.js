@@ -17,38 +17,27 @@ const trainInputs = (
 
 const trainLabels = [1, 1, 0, 0, 0]
 
-// Now defining the perceptron's weights.
-// These are the parameters that control how much importance is given to each input feature.
-// - weights[0] corresponds to the first feature (x1).
-// - weights[1] corresponds to the second feature (x2).
-// At the start, we just pick small values (0.1 and -0.3).
-// The perceptron will adjust these during training to better separate pencils from erasers.
-
-const weights = [0.1, -0.3] 
-
-// Defining the bias.
-// The bias is like a baseline offset: it shifts the decision boundary up or down.
-// Even if all inputs were zero, the bias ensures the perceptron can still output 1 or 0.
-// Think of it as the perceptron's 'default leaning' before considering any features.
-// Here we start with bias = 0.5, a small positive tilt toward predicting 'pencil'.
-
-const bias = 0.5
-
-// Define the learning rate.
-// This controls how big the weight and bias adjustments are during training.
-// A small value (like 0.1) means the perceptron learns slowly and carefully,
-// making gentle corrections each time it sees an error.
-// If the learning rate were larger, updates would be more aggressive,
-// but risk overshooting the best values.
-// Here we choose 0.1 to keep the training stable and gradual.
-
-const learningRate = 0.1
-
+// PERCEPTRON CLASS
+// This class bundles together everything the perceptron needs:
+// - weights: its current "strategy" for valuing each input feature
+// - bias: its baseline tilt before looking at inputs
+// - learningRate: how quickly it adjusts when it makes mistakes
 
 class Perceptron {
   constructor() {
+    // Initial weights: small starting values.
+    // weight[0] applies to the first feature (x1).
+    // weight[1] applies to the second feature (x2).
+    // These will be nudged during training to better separate pencils from erasers.
     this.weight = [0.1, -0.3]
+
+    // Bias: the perceptron's default leaning.
+    // Even if inputs are zero, bias lets it still output something.
+    // Starting at 0.5 means it leans slightly toward predicting "pencil."
     this.bias = 0.5
+
+    // Learning rate: controls the size of adjustments during training.
+    // With 0.1, the perceptron learns carefully and gradually.
     this.learningRate = 0.1
   }
 }
