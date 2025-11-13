@@ -76,3 +76,5 @@ class Perceptron {
 const perceptron = new Perceptron()
 perceptron.train(trainInputs, trainLabels)
 console.log(perceptron)
+
+const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
