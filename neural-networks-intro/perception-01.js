@@ -36,7 +36,7 @@ class Perceptron {
     this.learningRate = learningRate
   }
   train(trainData) {
-    
+    for (let i = 0; i < trainData.length; i++) {
 
     }
   }
