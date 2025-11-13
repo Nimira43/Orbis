@@ -2,13 +2,13 @@
 // Each element is a pair [x1, x2], representing two features for one data point.
 // Think of them as coordinates in a 2D space that our perceptron will learn to classify.
 
-const trainInputs = (
+const trainInputs = [
   [2, 7],
   [3, 6],
   [1, 1],
   [1, 2],
   [2, 1]
-)
+]
 //----------------------------------------------------
 
 // Defining the training labels: the 'answers' for each input.
