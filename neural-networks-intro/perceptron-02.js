@@ -58,8 +58,13 @@ class Perceptron {
     }
   }
 
-  calculateAccuracy() {
-    
+  calculateAccuracy(inputs, labels) {
+    let correct = 0
+
+    for (let i = 0; i < inputs.length; i++) {
+      const yPredicted = this.predict(inputs[i])
+    }
+
   }
 }
 
