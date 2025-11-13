@@ -103,8 +103,13 @@ class Perceptron {
   }
 }
 
+// Create a perceptron instance with default learning rate.
 const perceptron = new Perceptron()
 
+// Train the perceptron on the inputs and labels.
+// After one pass, weights and bias will be adjusted toward better classification.
 perceptron.train(trainInputs, trainLabels)
 
+// Log the perceptron's state after training.
+// This shows the updated weights and bias.
 console.log(perceptron)

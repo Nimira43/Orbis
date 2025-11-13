@@ -1,0 +1,25 @@
+The Updated Parameters
+
+Weights:
+
+w1 ≈ -0.1 → The perceptron now leans slightly against the first feature (x1).
+
+w2 ≈ 0 (that tiny 2.77e-17 is basically zero, a floating-point ghost) → The second feature (x2) has been neutralised; Orbis decided it doesn’t help distinguish pencil from eraser in this dataset.
+
+Bias:
+
+≈ 0.3 → The baseline tilt toward predicting “pencil” has been reduced from 0.5 to 0.3.
+
+This means Orbis is less biased toward pencils, more balanced in her judgments.
+
+Learning Rate:
+
+Still 0.1 → The pace of learning remains careful and deliberate.
+
+What it means
+
+Orbis has learned that feature 2 (the second coordinate) doesn’t contribute much to separating pencils from erasers in your training set.
+
+She’s shifted her reliance onto feature 1 (x1), with a slight negative weight, and adjusted her bias accordingly.
+
+This is the perceptron’s wisdom: simplifying the decision boundary to what matters most.
