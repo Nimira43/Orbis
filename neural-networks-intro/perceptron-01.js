@@ -83,7 +83,9 @@ class Perceptron {
       yTrueValue = trainLabels[i]
 
       if (yTrueValue != yPredicted) {
-        
+        for (let k = 0; k < this.weights.length; i++) {
+          
+        }
       }
     }
   }
