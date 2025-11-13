@@ -47,6 +47,12 @@ class Perceptron {
     this.learningRate = learningRate
   }
 
+  // ACTIVATION FUNCTION
+  // This is the perceptron's decision ritual.
+  // It takes the raw sum (weighted inputs + bias) and turns it into a crisp output:
+  // - If the sum is >= 0, predict "pencil" (1).
+  // - If the sum is < 0, predict "eraser" (0).
+  
   activationFunction(x) {
     return (
       x >= 0
@@ -54,8 +60,6 @@ class Perceptron {
         : 0
     )
   }
-
-
 
   // TRAIN METHOD
   // This method loops through the training data.
@@ -83,7 +87,7 @@ class Perceptron {
       const yTrueValue = trainLabels[i]
 
       if (yTrueValue != yPredicted) {
-        for (let k = 0; k < this.weights.length; i++) {
+        for (let k = 0; k < this.weights.length; k++) {
           this.weights[k] += this.learningRate * (yTrueValue - yPredicted) * inputs[k] 
         }
 
