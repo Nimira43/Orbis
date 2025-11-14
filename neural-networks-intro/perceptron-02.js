@@ -25,9 +25,7 @@ class Perceptron {
     )
   }
 
-  // Predict function
-  // Encapsulates the calculation of weighted sum + bias,
-  // then applies activation to return a classification.
+  // Predict function: weighted sum + bias → activation.
   
   predict(inputs) {
     let sum = this.bias
@@ -43,7 +41,6 @@ class Perceptron {
   train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
       let inputs = trainData[i]
-      // refactored to use predict()
       const yPredicted = this.predict(inputs)
       const yTrueValue = trainLabels[i]
      
@@ -58,7 +55,7 @@ class Perceptron {
     }
   }
 
-  // NEW: Accuracy calculation
+  // Accuracy calculation
   // Loops through inputs, uses predict() to classify each,
   // counts how many predictions match the true labels,
   // returns percentage correct.
@@ -76,8 +73,12 @@ class Perceptron {
   }
 }
 
-// Create perceptron, train once, log final state.
+// Create perceptron
 const perceptron = new Perceptron()
+
+// NEW: Multi‑epoch training loop.
+// Runs training multiple times (epochs) so weights and bias converge.
+// Logs the perceptron's state after each epoch.
 const epochs = 10
 
 for (let epoch = 0; epoch < epochs; epoch++) {
@@ -86,9 +87,6 @@ for (let epoch = 0; epoch < epochs; epoch++) {
   console.log(perceptron)
 }
 
-
-
-
-// NEW: Report training accuracy as a percentage.
+// Report training accuracy as a percentage.
 const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
 console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
