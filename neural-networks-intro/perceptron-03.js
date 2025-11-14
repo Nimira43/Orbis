@@ -15,6 +15,7 @@ const testInputs = [
 ]
 
 const trainLabels = [1, 1, 0, 0, 0]
+const testLabels = [1, 1, 0, 0, 1]
 
 class Perceptron {
   constructor(learningRate = 0.1) {
