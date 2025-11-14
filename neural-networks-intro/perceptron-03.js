@@ -76,13 +76,29 @@ class Perceptron {
 const perceptron = new Perceptron()
 const epochs = 10
 
-// Multi‑epoch training loop, logs state each pass.
+// NEW: Training loop now runs on test set instead of training set.
+// Logs perceptron state each epoch.
 for (let epoch = 0; epoch < epochs; epoch++) {
-  perceptron.train(trainInputs, trainLabels)
+  perceptron.train(testInputs, testLabels)
   console.log('Epoch: ', epoch)
   console.log(perceptron)
 }
 
+// NEW: Accuracy report for test set.
+const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+console.log(`TESTING ACCURACY: ${testingAccuracy}%`)
+
+
+// TRAINING DATA 
+
+// Multi‑epoch training loop, logs state each pass.
+// for (let epoch = 0; epoch < epochs; epoch++) {
+//   perceptron.train(trainInputs, trainLabels)
+//   console.log('Epoch: ', epoch)
+//   console.log(perceptron)
+// }
+
 // Final accuracy report.
-const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
-console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
+// const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
+// console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
+
