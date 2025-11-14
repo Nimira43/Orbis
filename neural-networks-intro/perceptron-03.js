@@ -6,6 +6,14 @@ const trainInputs = [
   [2, 1]
 ]
 
+const testInputs = [
+  [2, 6],
+  [3, 7],
+  [1, 3],
+  [2, 2],
+  [2, 5],
+]
+
 const trainLabels = [1, 1, 0, 0, 0]
 
 class Perceptron {
