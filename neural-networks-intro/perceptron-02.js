@@ -78,8 +78,16 @@ class Perceptron {
 
 // Create perceptron, train once, log final state.
 const perceptron = new Perceptron()
-perceptron.train(trainInputs, trainLabels)
-console.log(perceptron)
+const epochs = 10
+
+for (let epoch = 0; epoch < epochs; epoch++) {
+  perceptron.train(trainInputs, trainLabels)
+  console.log('Epoch: ', epoch)
+  console.log(perceptron)
+}
+
+
+
 
 // NEW: Report training accuracy as a percentage.
 const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
