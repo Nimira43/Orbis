@@ -55,8 +55,24 @@ With gentler updates, this seed blossomed into a stable, generalising solution.
 
 Final Verdicts
 ==============
-Seeds set the stage → they define the opening chord.
+Seeded randomness
 
-Learning rate sets the rhythm → too fast, and Orbis overshoots; just right, and she converges perfectly.
+By invoking seedrandom('perc-1', {global: true}), you bound the SeedDragon to ensure reproducible initial weights and bias.
+This makes every run start from the same spark, so results are consistent and comparable.
 
-Together, they determine whether she achieves perfect generalisation or stumbles.
+Randomised initialisation
+
+Instead of fixed values, weights and bias are drawn from a controlled random range.
+This allows exploration of different decision boundaries while still being deterministic thanks to the seed.
+
+Learning rate tuning
+
+Dropping the learning rate from 0.1 to 0.07 was the key refinement.
+Smaller steps prevented overshooting, letting Orbis converge to a boundary that generalises perfectly.
+This is why you saw the jump from 80% → 100% test accuracy.
+
+Dual dataset evaluation
+
+For the first time, both training and test accuracies are reported side by side.
+This gives a clear measure of generalisation, not just memorisation.
+
