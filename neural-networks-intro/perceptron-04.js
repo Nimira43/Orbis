@@ -2,6 +2,7 @@
 // Recap: same pencil/eraser dataset as before.
 // NEW: Both training and test sets are defined side by side.
 // This sets the stage for evaluating generalisation.
+
 const trainInputs = [
   [2, 7],
   [3, 6],
@@ -25,7 +26,9 @@ const testLabels = [1, 1, 0, 0, 1]
 class Perceptron {
   constructor(learningRate = 0.1) {
     // Recap: initial weights, bias, learning rate.
-    this.weights = [0.1, -0.3]
+    this.weights = Array(2).fill(0).map(() => 
+      Math.random() * 0.5 - 0.2
+    )
     this.bias = 0.5
     this.learningRate = learningRate
   }
