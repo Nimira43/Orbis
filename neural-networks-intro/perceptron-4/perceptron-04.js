@@ -1,5 +1,5 @@
 const seedrandom = require('seedrandom')
-const seed = 'LennyIsTheBestCat'
+const seed = 'perc-1'
 
 seedrandom(seed, {global: true})
 
@@ -83,7 +83,7 @@ class Perceptron {
 }
 
 // CREATE PERCEPTRON
-const perceptron = new Perceptron()
+const perceptron = new Perceptron(0.08)
 const epochs = 10
 
 // Training loop (currently set to training set).
