@@ -52,3 +52,11 @@ Seed perc‑1:
 
 Provided a balanced starting point (both weights positive, bias modest).
 With gentler updates, this seed blossomed into a stable, generalising solution.
+
+Final Verdicts
+==============
+Seeds set the stage → they define the opening chord.
+
+Learning rate sets the rhythm → too fast, and Orbis overshoots; just right, and she converges perfectly.
+
+Together, they determine whether she achieves perfect generalisation or stumbles.
