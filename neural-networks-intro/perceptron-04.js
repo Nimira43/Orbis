@@ -29,7 +29,7 @@ class Perceptron {
     this.weights = Array(2).fill(0).map(() => 
       Math.random() * 0.5 - 0.2
     )
-    this.bias = 0.5
+    this.bias = Math.random() * 0.5 - 0.2
     this.learningRate = learningRate
   }
 
