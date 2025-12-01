@@ -1,7 +1,6 @@
 // TRAINING + TEST DATA
-// Recap: same pencil/eraser dataset as before.
-// NEW: Both training and test sets are defined side by side.
-// This sets the stage for evaluating generalisation.
+// Same pencil/eraser dataset as before.
+// NEW: Training and test sets defined side by side for generalisation checks.
 
 const trainInputs = [
   [2, 7],
@@ -25,24 +24,22 @@ const testLabels = [1, 1, 0, 0, 1]
 // PERCEPTRON CLASS
 class Perceptron {
   constructor(learningRate = 0.1) {
-    // Recap: initial weights, bias, learning rate.
-    // NEW: Instead of fixed starting values, weights and bias are randomised.
-    // This prevents the perceptron from always starting with the same tilt,
-    // encouraging exploration of different decision boundaries.
+    // NEW: Randomised initial weights and bias.
+    // Each run starts with different values, exploring varied boundaries.
     this.weights = Array(2).fill(0).map(() => 
-      Math.random() * 0.5 - 0.2  // random value between -0.2 and +0.3
+      Math.random() * 0.5 - 0.2
     )
     this.bias = Math.random() * 0.5 - 0.2
-    console.log(this.weights) // log initial random weights for transparency
+    console.log(this.weights) // transparency: show starting weights
     this.learningRate = learningRate
   }
 
-  // Recap: step activation function.
+   // Step activation: returns 1 if sum >= 0, else 0.
   activationFunction(x) {
-    return (x >= 0 ? 1 : 0)
+    return x >= 0 ? 1 : 0
   }
   
-  // Recap: predict = weighted sum + bias → activation.
+  // Predict: weighted sum + bias → activation.
   predict(inputs) {
     let sum = this.bias
     for (let j = 0; j < inputs.length; j++) {
@@ -51,7 +48,7 @@ class Perceptron {
     return this.activationFunction(sum)
   }
 
-  // Recap: train = adjust weights/bias if prediction is wrong.
+  // Train: adjust weights/bias if prediction is wrong.
   train(trainData, trainLabels) {
     for (let i = 0; i < trainData.length; i++) {
       let inputs = trainData[i]
@@ -67,7 +64,7 @@ class Perceptron {
     }
   }
 
-  // Recap: accuracy = percentage of correct predictions.
+  // Accuracy: percentage of correct predictions.
   calculateAccuracy(inputs, labels) {
     let correct = 0
     for (let i = 0; i < inputs.length; i++) {
@@ -84,20 +81,16 @@ class Perceptron {
 const perceptron = new Perceptron()
 const epochs = 10
 
-// NEW: Flexible training loop.
-// Comment explains how to switch between datasets (train vs test).
-// Currently set to trainInputs/trainLabels.
+// Training loop (currently set to training set).
 for (let epoch = 0; epoch < epochs; epoch++) {
   perceptron.train(trainInputs, trainLabels)
-  console.log('Epoch: ', epoch)
-  console.log(perceptron)
+
 }
 
 // ACCURACY REPORTS
-// NEW: Both training and testing accuracy available.
-// Testing accuracy line is commented out for now.
+// NEW: Both training and testing accuracy reported.
 const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
-// const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
 
 console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
-// console.log(`TESTING ACCURACY: ${testingAccuracy}%`)
+console.log(`TESTING ACCURACY: ${testingAccuracy}%`)
