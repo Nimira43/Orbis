@@ -14,3 +14,41 @@ TESTING ACCURACY: 100%
 [ 0.1952002141046228, 0.2368326167421 ]
 TRAINING ACCURACY: 100%
 TESTING ACCURACY: 100%
+
+========================================
+Learning Rate Test 
+--------------------
+
+Setting seed = 'perc-1'
+Learning Rate = 0.1
+[ 0.07233658463401654, 0.14704200624956093 ]
+TRAINING ACCURACY: 100%
+TESTING ACCURACY: 80%
+
+Setting seed = 'perc-1'
+Learning Rate = 0.07
+[ 0.07233658463401654, 0.14704200624956093 ]
+TRAINING ACCURACY: 100%
+TESTING ACCURACY: 100%
+
+Observations
+------------
+Initial weights: [0.0723, 0.1470]
+Both positive, so x1 and x2 contribute toward predicting “pencil.”
+Bias: small positive tilt, gently favouring pencils.
+Training accuracy: 100% → flawless rehearsal.
+
+Testing accuracy:
+At first runs: 80% → some misclassifications on unseen data.
+With learning rate reduced to 0.07: 100% → perfect generalisation.
+
+What Changed
+Learning rate:
+
+At 0.1, Orbis adjusted weights too aggressively, overshooting the optimal boundary.
+At 0.07, her steps were smaller, more careful — allowing her to converge to a boundary that separates both training and test sets cleanly.
+
+Seed perc‑1:
+
+Provided a balanced starting point (both weights positive, bias modest).
+With gentler updates, this seed blossomed into a stable, generalising solution.

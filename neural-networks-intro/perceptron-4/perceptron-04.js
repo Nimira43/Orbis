@@ -83,7 +83,7 @@ class Perceptron {
 }
 
 // CREATE PERCEPTRON
-const perceptron = new Perceptron(0.08)
+const perceptron = new Perceptron(0.07)
 const epochs = 10
 
 // Training loop (currently set to training set).
