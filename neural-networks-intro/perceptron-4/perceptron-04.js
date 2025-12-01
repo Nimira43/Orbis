@@ -1,4 +1,7 @@
 const seedrandom = require('seedrandom')
+const seed = 'perc-4'
+
+seedrandom(seed, {global: true})
 
 // TRAINING + TEST DATA
 // Same pencil/eraser dataset as before.
