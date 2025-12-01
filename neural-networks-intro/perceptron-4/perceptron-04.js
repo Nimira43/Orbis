@@ -1,5 +1,5 @@
 const seedrandom = require('seedrandom')
-const seed = 'perc-4'
+const seed = 'LennyIsTheBestCat'
 
 seedrandom(seed, {global: true})
 
