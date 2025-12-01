@@ -1,3 +1,5 @@
+const seedrandom = require('seedrandom')
+
 // TRAINING + TEST DATA
 // Same pencil/eraser dataset as before.
 // NEW: Training and test sets defined side by side for generalisation checks.
