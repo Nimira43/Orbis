@@ -16,16 +16,18 @@ function readIdxFile(filePath) {
   // total images stored in this IDX file
   const numberOfItems = data.readUint32BE(offset)
   offset += 4
-  
-  if (magicNumber == 2049) {
-    // 2049 = IDX label file (no row/col metadata)
+
+  // 2049 = IDX label file (no row/col metadata)
+  if (magicNumber == 2049) {  
     const labels = []
 
     for (let i = 0; i < numberOfItems; i++) {
+      // each label is a single unsigned byte
       labels.push(data.readUint8(offset))
       offset += 1
     }
 
+    // return parsed label array with a simple descriptor
     return { type: 'labels', data: labels}
 
   } else {
