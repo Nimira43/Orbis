@@ -79,7 +79,7 @@ class Perceptron {
   }
 }
 
-// Create Peceptron
+// Create Perceptron
 const perceptron = new Perceptron(0.07)
 const epochs = 9
 
