@@ -25,4 +25,5 @@ function readIdxFile(filePath) {
   // image width in pixels
 }
 
-readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
+// readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
+readIdxFile('./datasets/mnist/train-labels.idx1-ubyte')
