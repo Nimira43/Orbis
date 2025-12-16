@@ -60,6 +60,7 @@ function readIdxFile(filePath) {
       // store completed 2D image
       images.push(image)
     }
+    return {type: 'images', data: images}
   }
 }
 
