@@ -13,16 +13,21 @@ function readIdxFile(filePath) {
   const magicNumber = data.readUint32BE()
   offset += 4
 
-  const numberOfItems = data.readUint32BE(offset)
   // total images stored in this IDX file
+  const numberOfItems = data.readUint32BE(offset)
   offset += 4
+  
+  if (magicNumber == 2049) {
+    // 2049 = IDX label file (no row/col metadata)
+    console.log('Label file.')  
+  } else {
+    // image height in pixels
+    const row = data.readUint32BE(offset)
+    offset += 4
 
-  const row = data.readUint32BE(offset)
-  // image height in pixels
-  offset += 4
-
-  const cols = data.readUint32BE(offset)
-  // image width in pixels
+    // image width in pixels
+    const cols = data.readUint32BE(offset)
+  }
 }
 
 // readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
