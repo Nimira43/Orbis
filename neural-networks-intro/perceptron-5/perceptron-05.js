@@ -32,7 +32,7 @@ class Perceptron {
       Math.random() * 0.5 - 0.2
     )
     this.bias = Math.random() * 0.5 - 0.2
-    console.log(this.weights) 
+    console.log('WEIGHTS: ', this.weights) 
     this.learningRate = learningRate
   }
 
@@ -80,22 +80,23 @@ class Perceptron {
 }
 
 // Create Peceptron
-// Lowering learning rate (from 0.1 to 0.07) → gentler updates, avoids overshooting.
-// This stabilises convergence and improved test accuracy to 100%.
 const perceptron = new Perceptron(0.07)
 const epochs = 10
 
 // Training loop (currently set to training set).
 for (let epoch = 0; epoch < epochs; epoch++) {
   perceptron.train(trainInputs, trainLabels)
-
-}
+// one full training pass per epoch
 
 // Accuracy Reports
-// Both training and testing accuracy reported side by side.
-// This shows generalisation, not just memorisation.
-const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
-const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+  const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
+  const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+  // evaluate performance after each epoch
+  
+  console.log(`EPOCH: ${epoch + 1}`)
+  console.log(`Training Accuracy: ${trainingAccuracy}%`)
+  console.log(`Testing Accuracy: ${testingAccuracy}%`)
+}
 
-console.log(`TRAINING ACCURACY: ${trainingAccuracy}%`)
-console.log(`TESTING ACCURACY: ${testingAccuracy}%`)
+
+
