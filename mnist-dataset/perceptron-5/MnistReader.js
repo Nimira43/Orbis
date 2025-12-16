@@ -42,20 +42,24 @@ function readIdxFile(filePath) {
     const images = []
 
     for (let i = 0; i < numberOfItems; i++) {
+      // container for a single image (2D array)
       const image = []
 
       for (let r = 0; r < rows; r++) {
+        // one row of pixel values
         const row = []
 
         for (let c = 0; c < cols; c++) {
+          // each pixel = 1 byte (0–255 grayscale)
           row.push(data.readUint8(offset))
           offset += 1
         }
 
         image.push(row)
       }
+      // store completed 2D image
+      images.push(image)
     }
-
   }
 }
 
