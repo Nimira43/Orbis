@@ -32,7 +32,7 @@ function readIdxFile(filePath) {
 
   } else {
     // image height in pixels
-    const row = data.readUint32BE(offset)
+    const rows = data.readUint32BE(offset)
     offset += 4
 
     // image width in pixels
@@ -43,6 +43,17 @@ function readIdxFile(filePath) {
 
     for (let i = 0; i < numberOfItems; i++) {
       const image = []
+
+      for (let r = 0; r < rows; r++) {
+        const row = []
+
+        for (let c = 0; c < cols; c++) {
+          row.push(data.readUint8(offset))
+          offset += 1
+        }
+
+        image.push(row)
+      }
     }
 
   }
