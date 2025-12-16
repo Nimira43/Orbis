@@ -5,7 +5,6 @@ const seed = 'perc-1'
 seedrandom(seed, {global: true})
 
 // Datasets
-
 const trainInputs = [
   [2, 7],
   [3, 6],
@@ -22,6 +21,7 @@ const testInputs = [
   [2, 5],
 ]
 
+// 1 = pencil, 0 = eraser
 const trainLabels = [1, 1, 0, 0, 0]
 const testLabels = [1, 1, 0, 0, 1]
 
