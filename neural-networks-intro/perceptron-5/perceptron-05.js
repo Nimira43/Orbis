@@ -81,7 +81,7 @@ class Perceptron {
 
 // Create Peceptron
 const perceptron = new Perceptron(0.07)
-const epochs = 10
+const epochs = 9
 
 // Training loop (currently set to training set).
 for (let epoch = 0; epoch < epochs; epoch++) {
@@ -92,10 +92,11 @@ for (let epoch = 0; epoch < epochs; epoch++) {
   const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
   const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
   // evaluate performance after each epoch
-  
+
   console.log(`EPOCH: ${epoch + 1}`)
   console.log(`Training Accuracy: ${trainingAccuracy}%`)
   console.log(`Testing Accuracy: ${testingAccuracy}%`)
+  console.log('---------------------------')
 }
 
 
