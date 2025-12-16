@@ -19,7 +19,15 @@ function readIdxFile(filePath) {
   
   if (magicNumber == 2049) {
     // 2049 = IDX label file (no row/col metadata)
-    console.log('Label file.')  
+    const labels = []
+
+    for (let i = 0; i < numberOfItems; i++) {
+      labels.push(data.readUint8(offset))
+      offset += 1
+    }
+
+    return { type: 'labels', data: labels}
+
   } else {
     // image height in pixels
     const row = data.readUint32BE(offset)
@@ -31,4 +39,4 @@ function readIdxFile(filePath) {
 }
 
 // readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
-readIdxFile('./datasets/mnist/train-labels.idx1-ubyte')
+const trainLabels = readIdxFile('./datasets/mnist/train-labels.idx1-ubyte')
