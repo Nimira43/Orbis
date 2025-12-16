@@ -10,7 +10,7 @@ function readIdxFile(filePath) {
   let offset = 0
 
   // first 4 bytes = magicNumber (identifies IDX file type)
-  const magicNumber = data.readUint32BE()
+  const magicNumber = data.readUint32BE(offset)
   offset += 4
 
   // total images stored in this IDX file
@@ -37,6 +37,14 @@ function readIdxFile(filePath) {
 
     // image width in pixels
     const cols = data.readUint32BE(offset)
+    offset += 4
+
+    const images = []
+
+    for (let i = 0; i < numberOfItems; i++) {
+      const image = []
+    }
+
   }
 }
 
