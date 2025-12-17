@@ -1,17 +1,11 @@
 import Navigation from './components/Navigation'
-import Home from './pages/Home'
-import PreviewTestImagesPage from './pages/mnist/PreviewTestImages'
-import TestPerceptronPage from './pages/mnist/TestPerceptron'
+import { Router } from './routes/router'
 
 function App() {
   return (
     <>  
       <Navigation />
-      <div>
-        <Home />
-        <PreviewTestImagesPage />
-        <TestPerceptronPage />
-      </div> 
+      <Router />
     </>
   )
 }

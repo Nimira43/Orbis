@@ -1,14 +1,9 @@
-import { useState } from 'react'
+
 import PreviewTestImagesPage from '../pages/mnist/PreviewTestImages'
 import HomePage from '../pages/Home'
 
-export function Router() {
-  const [pathname, setPathname] = useState(window.location.pathname)
+function Router() {
 
-  switch (pathname) {
-    case '/test-images':
-      return <PreviewTestImagesPage />
-    default:
-      return <HomePage />
-  }
 }
+
+export default Router
