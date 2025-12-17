@@ -60,6 +60,7 @@ function saveData(labels, inputs, path) {
 
   try {
     fs.writeFileSync(`${path},json`, JSON.stringify(data, null, 0))
+    console.log(`File ${path}.json saved.`)
   } catch (e) {
     console.log(e.message)
   }
