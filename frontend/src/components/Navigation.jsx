@@ -2,29 +2,23 @@ function Navigation() {
   return (
     <nav>
       <ul>
-        <li>
-          <div
-            className='link'
-            onClick={() => alert('Go Home')}
-          >
-            Home
-          </div>
+        <li
+          className='link'
+          onClick={() => alert('Go Home')}
+        >
+          Home
         </li>
-        <li>
-          <div
-            className='link'
-            onClick={() => alert('Preview Test Images')}
-          >
-            Preview Test Images
-          </div>
+        <li
+          className='link'
+          onClick={() => alert('Preview Test Images')}
+        >
+          Preview Test Images
         </li>
-        <li>
-          <div
-            className='link'
-            onClick={() => alert('Test Perceptron')}
-          >
-            Test Perceptron
-          </div>
+        <li
+          className='link'
+          onClick={() => alert('Test Perceptron')}
+        >
+          Test Perceptron
         </li>
       </ul>
     </nav>

@@ -34,3 +34,13 @@
   margin-bottom: 10px;
 }
 
+.link {
+  color: var(--grey-1);
+  list-style-type: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.link:hover {
+  color: var(--main);
+}
