@@ -55,5 +55,10 @@ function readIdxFile(filePath) {
 const trainImages = readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
 console.log(trainImages)
 
+
 // const trainLabels = readIdxFile('./datasets/mnist/train-labels.idx1-ubyte')
 // console.log(trainLabels)
+
+// console.log(trainImages.data[0])
+// console.dir(trainImages.data[0], { depth: null })
+
