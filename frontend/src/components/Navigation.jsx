@@ -8,22 +8,13 @@ function Navigation() {
       </div>
       <div className='links-wrapper'>
         <ul>
-          <li
-            className='link'
-            onClick={() => alert('Go Home')}
-          >
+          <li className='link'>
             Home
           </li>
-          <li
-            className='link'
-            onClick={() => alert('Preview Test Images')}
-          >
+          <li className='link'>
             Images
           </li>
-          <li
-            className='link'
-            onClick={() => alert('Test Perceptron')}
-          >
+          <li className='link'>
             Perceptron
           </li>
         </ul>
