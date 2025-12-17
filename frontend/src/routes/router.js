@@ -1,6 +1,12 @@
+import { Routes, Route } from 'react-router-dom'
+
 function Router() {
   return (
-    <div>Router</div>
+    <main className='page-root'>
+      <Routes>
+        <Route
+      </Routes>
+    </main>
   )
 }
 
