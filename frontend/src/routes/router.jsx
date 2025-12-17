@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/Home.jsx'
-import TestPerceptronPage from '../pages/TestPerceptron'
+import TestPerceptronPage from '../pages/TestPerceptron.jsx'
 import PreviewTestImagesPage from '../pages/PreviewTestImages.jsx'
 
 function Router() {
