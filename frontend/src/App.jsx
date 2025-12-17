@@ -1,16 +1,16 @@
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
+import PreviewTestImagesPage from './pages/mnist/PreviewTestImages'
 
 function App() {
   return (
-    <div class='app'>
-      <div className='logo-wrapper'>
-        <h1 className='logo'>Orbis</h1>
-      </div>
-      <div className='app-container'>
-        <Navigation />
+    <div class='app'>  
+      <Navigation />
+      {/* <div className='app-container'>
+        
         <Home />
-      </div>
+        <PreviewTestImagesPage />
+      </div> */}
     </div>
   )
 }
