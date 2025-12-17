@@ -1,13 +1,13 @@
-function Home() {
+function PreviewTestImages() {
   return (
     <>
       <div className='page-container'>
         <div className='page-header logo'>
-          Home
+          Preview Test Images
         </div>
       </div>
     </>
   )
 }
 
-export default Home
+export default PreviewTestImages
