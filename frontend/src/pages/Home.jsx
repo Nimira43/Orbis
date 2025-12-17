@@ -1,4 +1,4 @@
-function Home() {
+function HomePage() {
   return (
     <>
       <div className='page-container'>
@@ -10,4 +10,4 @@ function Home() {
   )
 }
 
-export default Home
+export default HomePage

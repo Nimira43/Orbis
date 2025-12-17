@@ -1,13 +1,13 @@
-function PreviewTestImagesPage() {
+function TestPerceptronPage() {
   return (
     <>
       <div className='page-container'>
         <div className='page-header logo'>
-          Preview Test Images
+          Test Perceptron
         </div>
       </div>
     </>
   )
 }
 
-export default PreviewTestImagesPage
+export default TestPerceptronPage
