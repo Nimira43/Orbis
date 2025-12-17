@@ -2,8 +2,8 @@ function Home() {
   return (
     <>
       <div className='page-container'>
-        <div className='page-header'>
-          Home Page
+        <div className='page-header logo'>
+          Orbis
         </div>
       </div>
     </>

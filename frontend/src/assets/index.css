@@ -22,7 +22,15 @@
 
 .logo {
   font-family: 'Finger Paint', sans-serif;
-  font-weight: bold;
-  font-size: 3rem;
-  color: #ff4500;
+  color: var(--main);
 }
+
+.app {
+  padding: 200px;
+}
+
+.page-header {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
