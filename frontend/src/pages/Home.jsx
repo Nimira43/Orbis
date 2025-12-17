@@ -2,7 +2,7 @@ function HomePage() {
   return (
     <>
       <div className='page-container'>
-        <div className='page-header logo'>
+        <div className='page-header'>
           Home
         </div>
       </div>

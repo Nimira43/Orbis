@@ -2,7 +2,7 @@ function PreviewTestImagesPage() {
   return (
     <>
       <div className='page-container'>
-        <div className='page-header logo'>
+        <div className='page-header'>
           Preview Test Images
         </div>
       </div>

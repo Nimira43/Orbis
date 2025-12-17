@@ -2,7 +2,7 @@ function TestPerceptronPage() {
   return (
     <>
       <div className='page-container'>
-        <div className='page-header logo'>
+        <div className='page-header'>
           Test Perceptron
         </div>
       </div>
