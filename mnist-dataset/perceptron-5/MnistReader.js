@@ -1,11 +1,11 @@
 const fs = require('fs')
 
-// load and parse IDX files
+// read IDX file (labels or images)
 function readIdxFile(filePath) {
   const data = fs.readFileSync(filePath)
   let offset = 0
 
-  // header values
+  // read header
   const magicNumber = data.readUint32BE(offset)
   offset += 4
   const numberOfItems = data.readUint32BE(offset)
@@ -33,11 +33,11 @@ function readIdxFile(filePath) {
     for (let i = 0; i < numberOfItems; i++) {
       const image = []
 
-      // read each row
+      // read rows
       for (let r = 0; r < rows; r++) {
         const row = []
 
-        // read each pixel
+        // read pixels
         for (let c = 0; c < cols; c++) {
           row.push(data.readUint8(offset))
           offset += 1
@@ -50,8 +50,7 @@ function readIdxFile(filePath) {
   }
 }
 
-// example usage
-
+// save parsed data as JSON
 function saveData(labels, inputs, path) {
   const data = {
     labels,
@@ -59,16 +58,18 @@ function saveData(labels, inputs, path) {
   }
 
   try {
-    fs.writeFileSync(`${path},json`, JSON.stringify(data, null, 0))
+    fs.writeFileSync(`${path}.json`, JSON.stringify(data, null, 0))
     console.log(`File ${path}.json saved.`)
   } catch (e) {
     console.log(e.message)
   }
 }
 
+// load MNIST test set
 const testImages = readIdxFile('./datasets/mnist/t10k-images.idx3-ubyte')
 const testLabels = readIdxFile('./datasets/mnist/t10k-labels.idx1-ubyte')
 
-
+// write combined JSON file
+saveData(testLabels.data, testImages.data, './datasets/mnist/test-data')
 
 
