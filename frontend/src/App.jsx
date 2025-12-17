@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div>
-      <h1>Orbis</h1> 
+    <div className='container'>
+      <h1 className='logo'>Orbis</h1> 
       <p>Neural Networks in Javascript</p>
     </div>
   )
