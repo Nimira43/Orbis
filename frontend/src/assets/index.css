@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
 }
@@ -51,7 +53,6 @@
 
 .link {
   color: var(--grey-1);
-  list-style-type: none;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -66,7 +67,6 @@
 
 .page-header {
   font-size: 1rem;
-  color: var(--main);
   margin-bottom: 0.5rem;
 }
 

@@ -8,14 +8,29 @@ function Navigation() {
       </div>
       <div className='links-wrapper'>
         <ul>
-          <li className='link'>
-            <Link to='/'>Home</Link>
+          <li>
+            <Link
+              to='/'
+              className='link'
+            >
+              Home
+            </Link>
           </li>
-          <li className='link'>
-            <Link to='/test-images'>Images</Link>
+          <li>
+            <Link
+              to='/test-images'
+              className='link'
+            >
+              Images
+            </Link>
           </li>
-          <li className='link'>
-            <Link to='/test-perceptron'>Perceptron</Link>
+          <li>
+            <Link
+              to='/test-perceptron'
+              className='link'
+            >
+              Perceptron
+            </Link>
           </li>
         </ul>
       </div>
