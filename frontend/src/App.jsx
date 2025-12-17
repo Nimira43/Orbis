@@ -1,17 +1,18 @@
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import PreviewTestImagesPage from './pages/mnist/PreviewTestImages'
+import TestPerceptronPage from './pages/mnist/TestPerceptron'
 
 function App() {
   return (
-    <div class='app'>  
+    <>  
       <Navigation />
-      {/* <div className='app-container'>
-        
+      <div>
         <Home />
         <PreviewTestImagesPage />
-      </div> */}
-    </div>
+        <TestPerceptronPage />
+      </div> 
+    </>
   )
 }
 
