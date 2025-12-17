@@ -1,14 +1,24 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/Home.jsx'
-import PreviewTestImages from '../pages/PreviewTestImages.jsx'
-
+import TestPerceptronPage from '../pages/TestPerceptron'
+import PreviewTestImagesPage from '../pages/PreviewTestImages.jsx'
 
 function Router() {
   return (
     <main className='page-root'>
       <Routes>
-        <Route path='/' element={<HomePage />}/>
-        <Route path='/test-images' element={<PreviewTestImages />}/>
+        <Route
+          path='/'
+          element={<HomePage />}
+        />
+        <Route
+          path='/test-images'
+          element={<PreviewTestImagesPage />}
+        />
+        <Route
+          path='/test-perceptron'
+          element={<TestPerceptronPage />}
+        />
       </Routes>
     </main>
   )
