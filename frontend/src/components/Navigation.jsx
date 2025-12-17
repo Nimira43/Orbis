@@ -10,6 +10,22 @@ function Navigation() {
             Home
           </div>
         </li>
+        <li>
+          <div
+            className='link'
+            onClick={() => alert('Preview Test Images')}
+          >
+            Preview Test Images
+          </div>
+        </li>
+        <li>
+          <div
+            className='link'
+            onClick={() => alert('Test Perceptron')}
+          >
+            Test Perceptron
+          </div>
+        </li>
       </ul>
     </nav>
   )
