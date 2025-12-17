@@ -52,13 +52,9 @@ function readIdxFile(filePath) {
 
 // example usage
 
-const trainImages = readIdxFile('./datasets/mnist/train-images.idx3-ubyte')
-console.log(trainImages)
+const testImages = readIdxFile('./datasets/mnist/t10k-images.idx3-ubyte')
+const testLabels = readIdxFile('./datasets/mnist/t10k-labels.idx1-ubyte')
 
 
-// const trainLabels = readIdxFile('./datasets/mnist/train-labels.idx1-ubyte')
-// console.log(trainLabels)
 
-// console.log(trainImages.data[0])
-// console.dir(trainImages.data[0], { depth: null })
 
