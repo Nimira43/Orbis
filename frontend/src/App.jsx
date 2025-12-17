@@ -1,8 +1,9 @@
+import Home from './pages/Home'
+
 function App() {
   return (
-    <div className='container'>
-      <h1 className='logo'>Orbis</h1> 
-      <p>Neural Networks in Javascript</p>
+    <div>
+      <Home />
     </div>
   )
 }

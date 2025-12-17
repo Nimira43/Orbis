@@ -8,20 +8,6 @@
   font-weight: 300;
 }
 
-body {
-  background-color: #111;
-  color: #fafafa;
-}
-
-.container {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .logo {
   font-family: 'IM Fell English SC', serif;
   font-weight: bold;

@@ -1,8 +1,12 @@
 function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <>
+      <div className='page-container'>
+        <div className='page-header'>
+          Home Page
+        </div>
+      </div>
+    </>
   )
 }
 
