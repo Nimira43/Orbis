@@ -9,17 +9,16 @@ function Navigation() {
       <div className='links-wrapper'>
         <ul>
           <li className='link'>
-            Home
+            <Link to='/'>Home</Link>
           </li>
           <li className='link'>
-            Images
+            <Link to='/test-images'>Images</Link>
           </li>
           <li className='link'>
-            Perceptron
+            <Link to='/test-perceptron'>Perceptron</Link>
           </li>
         </ul>
       </div>
-      
     </nav>
   )
 }
