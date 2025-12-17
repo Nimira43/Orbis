@@ -52,6 +52,10 @@ function readIdxFile(filePath) {
 
 // example usage
 
+function saveData(labels, inputs, path) {
+  
+}
+
 const testImages = readIdxFile('./datasets/mnist/t10k-images.idx3-ubyte')
 const testLabels = readIdxFile('./datasets/mnist/t10k-labels.idx1-ubyte')
 
