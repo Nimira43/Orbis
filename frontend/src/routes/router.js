@@ -1,9 +1,7 @@
-
-import PreviewTestImagesPage from '../pages/mnist/PreviewTestImages'
-import HomePage from '../pages/Home'
-
 function Router() {
-
+  return (
+    <div>Router</div>
+  )
 }
 
 export default Router
