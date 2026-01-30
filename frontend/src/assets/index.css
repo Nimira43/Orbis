@@ -78,4 +78,14 @@
   margin-bottom: 0.5rem;
 }
 
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
 
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
