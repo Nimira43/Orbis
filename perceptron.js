@@ -19,7 +19,7 @@ const testInputs = [
   [2, 5],
 ]
 
-// 1 = pencil, 0 = eraser
+// Labels are the numbers 0 to 9
 const trainLabels = [1, 1, 0, 0, 0]
 const testLabels = [1, 1, 0, 0, 1]
 
