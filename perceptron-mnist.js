@@ -12,7 +12,7 @@ class Perceptron {
     this.weights = Array(inputSize)
       .fill(0)
       .map(() => 
-        Math.random() * 0.5 - 0.2
+        Math.random() * 0.3 - 0.1
       )
     this.bias = Math.random() * 0.3 - 0.1 
     this.learningRate = learningRate
@@ -57,28 +57,55 @@ class Perceptron {
   }
 }
 
-const epochs = 100
+function shuffleArray(array1, array2) {
+  for (let i = array1.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+
+    const temp1 = array1[i]
+    array1[i] = array1[j]
+    array1[j] = temp1
+
+    const temp2 = array2[i]
+    array2[i] = array2[j]
+    array2[j] = temp2
+  }
+}
+
+const epochs = 34
 const trainBatches = 10
+const testBatches = 2
 const INPUT_SIZE = 28 * 28
 const trainInputs = []
+const testInputs = []
 const trainLabels = []
+const testLabels = []
 
 for (let i = 0; i < trainBatches; i++) {
   const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/train-data-${i}.json`, 'utf8'))
   trainInputs.push(...inputs)
   trainLabels.push(...labels)
 }
+for (let i = 0; i < testBatches; i++) {
+  const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/test-data-${i}.json`, 'utf8'))
+  testInputs.push(...inputs)
+  testLabels.push(...labels)
+}
 
 const perceptron = new Perceptron(INPUT_SIZE, 0.01)
 
 for (let epoch = 0; epoch < epochs; epoch++) {
+  shuffleArray(trainInputs, trainLabels)
   perceptron.train(trainInputs, trainLabels)
+  // perceptron.train(testInputs, testLabels)
 
-  const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
-  // const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+  // const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
+  const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
 
   console.log(`EPOCH: ${epoch + 1}`)
-  console.log(`Training Accuracy: ${trainingAccuracy}%`)
-  // console.log(`Testing Accuracy: ${testingAccuracy}%`)
+  // console.log(`Training Accuracy: ${trainingAccuracy}%`)
+  console.log(`Testing Accuracy: ${testingAccuracy}%`)
   console.log('---------------------------')
 }
+
+console.log(perceptron.weights)
+console.log(perceptron.bias)
