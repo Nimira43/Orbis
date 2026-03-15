@@ -55,6 +55,22 @@ class Perceptron {
     }
     return (correct / inputs.length) * 100
   }
+
+  saveModel(path) {
+    console.log('Preparing data export...')
+    const exportData = {
+      weights: this.weights,
+      bias: this.bias
+    }
+    const stringData = JSON.stringify(exportData, null, 2)
+
+    try {
+      fs.writeFileSync(path, stringData)
+      console.log('Data file saved to: ' + path)
+    } catch (e) {
+      console.log('Saving data failed: ' + e.message)
+    }
+  }
 }
 
 function shuffleArray(array1, array2) {
@@ -116,11 +132,20 @@ const perceptron = new Perceptron(INPUT_SIZE, 0.01)
 for (let epoch = 0; epoch < epochs; epoch++) {
   shuffleArray(trainInputs, trainLabels)
   perceptron.train(trainInputs, trainLabels)
+  // perceptron.train(testInputs, testLabels)
+
+  // const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
   const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
+
   console.log(`EPOCH: ${epoch + 1}`)
+  // console.log(`Training Accuracy: ${trainingAccuracy}%`)
   console.log(`Testing Accuracy: ${testingAccuracy}%`)
   console.log('---------------------------')
 }
 
 const misclassified = findMisclassified(testInputs, testLabels, perceptron)
 displayMisclassified(misclassified)
+perceptron.saveModel('./frontend/public/mnist/binary-model.json')
+
+// console.log(perceptron.weights)
+// console.log(perceptron.bias)
