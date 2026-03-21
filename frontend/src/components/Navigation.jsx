@@ -21,7 +21,7 @@ function Navigation() {
               to='/test-images'
               className='link'
             >
-              Images
+              Preview Test Images
             </Link>
           </li>
           <li>
@@ -29,7 +29,7 @@ function Navigation() {
               to='/test-perceptron'
               className='link'
             >
-              Perceptron
+              Test Perceptron
             </Link>
           </li>
         </ul>

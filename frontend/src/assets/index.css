@@ -95,3 +95,21 @@
 img {
   image-rendering: pixelated;
 }
+
+.predictions-btn {
+  background-color: var(--main);
+  color: var(--light);
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.predictions-btn:hover {
+  background-color: var(--dark);
+}
+
