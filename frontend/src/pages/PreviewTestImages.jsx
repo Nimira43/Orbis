@@ -12,13 +12,25 @@ function PreviewTestImagesPage() {
   }, [])
 
   useEffect(() => {
-    fetch('/mnist/binary-data.json')
+    fetch('/mnist/binary-model.json')
       .then(response => response.json())
       .then(data => setBinaryModel(data))
   }, [])
 
-  const predict = () => {
-    return 1
+  const activationFunction = (sum) => {
+    return sum >= 0 ? 1 : 0
+  }
+
+  const predict = (image) => {
+    let sum = binaryModel.bias
+    const inputs = image.flat()
+
+    binaryModel.weights.forEach((weight, i) => {
+      sum += weight * inputs[i]
+    })
+    const prediction = activationFunction(sum)
+
+    return prediction
   }
 
   const makeAllPredictions = () => {
@@ -28,7 +40,7 @@ function PreviewTestImagesPage() {
     const newPredictions = mnistData.inputs.map(image => {
       return predict(image)
     })
-
+    console.log(newPredictions)
     setPredictions(newPredictions)
   }
 
@@ -71,10 +83,8 @@ function PreviewTestImagesPage() {
         <div className='page-content'>
           <div>
             <button 
-              class='predictions-btn'
-              onClick={makeAllPredictions
-                
-              }
+              className='predictions-btn'
+              onClick={makeAllPredictions}
             >
               Make Predictions
             </button>
