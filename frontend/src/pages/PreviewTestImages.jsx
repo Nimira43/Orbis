@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 function PreviewTestImagesPage() {
   const [mnistData, setMnistData] = useState(null)
   const [binaryModel, setBinaryModel] = useState(null)
-  const [predictions, setPredictions] = useState([])
+  const [predictions, setPredictions] = useState(null)
 
   useEffect(() => {
     fetch('/mnist/test-data-0.json')
@@ -40,7 +40,6 @@ function PreviewTestImagesPage() {
     const newPredictions = mnistData.inputs.map(image => {
       return predict(image)
     })
-    console.log(newPredictions)
     setPredictions(newPredictions)
   }
 
@@ -91,19 +90,37 @@ function PreviewTestImagesPage() {
           </div>
 
           <div className='images'>
-            {inputs.map((input, index) => (
-              <div
-                key={index}
-                className='image-container'
-              >
-                <img
-                  alt={`Digit ${labels[index]}`}
-                  src={createImageUrl(input)}
-                />
-                <p>
-                  Label: {labels[index]}, Index: {index}</p>
-              </div>
-            ))}
+            {
+              inputs.map((input, index) => {
+                const prediction = predictions
+                  ? predictions[index]
+                  : null              
+                const isCorrect = prediction !== null && labels[index] === prediction
+                const borderColour = prediction === null
+                  ? 'transparent'
+                  : isCorrect 
+                    ? '#049104'
+                    : '#c51111'
+                  
+                return (
+                  <div
+                    key={index}
+                    className='image-container'
+                    style={{
+                      border: `2px solid ${borderColour}`,
+                      margin: '5px'
+                    }}
+                  >
+                    <img
+                      alt={`Digit ${labels[index]}`}
+                      src={createImageUrl(input)}
+                    />
+                    <p>
+                      Label: {labels[index]}, Index: {index}</p>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>
