@@ -67,7 +67,11 @@ function PreviewTestImagesPage() {
 
   if (!mnistData) {
     return (
-      <div>Loading...</div>
+      <div className='page-container'>
+        <div className='page-title'>
+          Loading...
+        </div>
+      </div>
     )
   }
 
@@ -82,7 +86,7 @@ function PreviewTestImagesPage() {
         <div className='page-content'>
           <div>
             <button 
-              className='predictions-btn'
+              className='main-btn'
               onClick={makeAllPredictions}
             >
               Make Predictions

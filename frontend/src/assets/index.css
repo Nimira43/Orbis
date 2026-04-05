@@ -57,6 +57,9 @@
 
 .link {
   color: var(--grey-1);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
   cursor: pointer;
   transition: var(--transition);
 }
@@ -96,7 +99,13 @@ img {
   image-rendering: pixelated;
 }
 
-.predictions-btn {
+.button-container {
+  display: flex;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+.main-btn {
   background-color: var(--main);
   color: var(--light);
   border: none;
@@ -109,7 +118,12 @@ img {
   transition: var(--transition);
 }
 
-.predictions-btn:hover {
+.main-btn:hover {
   background-color: var(--dark);
+}
+
+.image-prediction-canvas {
+  margin-top: 10px;
+  border: 1px solid var(--dark);
 }
 

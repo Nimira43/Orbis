@@ -26,10 +26,10 @@ function Navigation() {
           </li>
           <li>
             <Link
-              to='/test-perceptron'
+              to='/image-prediction'
               className='link'
             >
-              Test Perceptron
+              Image Prediction
             </Link>
           </li>
         </ul>

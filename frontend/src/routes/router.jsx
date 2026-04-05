@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/Home.jsx'
-import TestPerceptronPage from '../pages/TestPerceptron.jsx'
+import ImagePredictionPage from '../pages/ImagePrediction.jsx'
 import PreviewTestImagesPage from '../pages/PreviewTestImages.jsx'
 
 function Router() {
@@ -16,8 +16,8 @@ function Router() {
           element={<PreviewTestImagesPage />}
         />
         <Route
-          path='/test-perceptron'
-          element={<TestPerceptronPage />}
+          path='/image-prediction'
+          element={<ImagePredictionPage />}
         />
       </Routes>
     </main>
