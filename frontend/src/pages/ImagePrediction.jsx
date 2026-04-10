@@ -6,6 +6,7 @@ const SCALE = 10
 
 function ImagePredictionPage() {
   const [binaryModel, setBinaryModel] = useState(null)
+  const [prediction, setPrediction] = useState(null)
   const canvasRef = useRef(null)
   const isDrawingRef = useRef(false)
 
@@ -26,7 +27,7 @@ function ImagePredictionPage() {
     ctx.fillStyle = 'black'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.strokeStyle = 'white'
-    ctx.lineWidth = 1.7
+    ctx.lineWidth = 1.5
 
     const startDrawing = (event) => {
       const { offsetX, offsetY } = event
@@ -64,6 +65,35 @@ function ImagePredictionPage() {
     }
   }, [])
 
+  const preprocessCanvas = () => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    const imageData = ctx.getImageData(0, 0, WIDTH, HEIGHT)
+    const greyScaleData = []
+
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      greyScaleData.push(imageData.data[i])
+    }
+    return greyScaleData
+  }
+
+  const activationFunction = (sum) => {
+    return sum >= 0 ? 1 : 0
+  }
+
+  const predict = () => {
+    const inputs = preprocessCanvas()
+    let sum = binaryModel.bias
+
+    binaryModel.weights.forEach((weight, i) => {
+      sum += weight * inputs[i]
+    })
+
+    const prediction = activationFunction(sum)
+    console.log(prediction)
+    setPrediction(prediction)
+  }
+
   return (
     <div className='page-container'>
       <div className='page-header'>
@@ -79,7 +109,10 @@ function ImagePredictionPage() {
         <button className='main-btn'>
           Clear
         </button>
-        <button className='main-btn'>
+        <button
+          className='main-btn'
+          onClick={predict}
+        >
           Prediction
         </button>
       </div>
