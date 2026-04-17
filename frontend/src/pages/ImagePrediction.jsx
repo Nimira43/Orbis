@@ -83,6 +83,7 @@ function ImagePredictionPage() {
 
   const predict = () => {
     const inputs = preprocessCanvas()
+
     let sum = binaryModel.bias
 
     binaryModel.weights.forEach((weight, i) => {
@@ -92,6 +93,15 @@ function ImagePredictionPage() {
     const prediction = activationFunction(sum)
     console.log(prediction)
     setPrediction(prediction)
+  }
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+    ctx.clearRect(0, 0, WIDTH, HEIGHT)
+    ctx.fillStyle = '#000'
+    ctx.fillRect(0, 0, WIDTH, HEIGHT)
+    setPrediction(null)
   }
 
   return (
@@ -106,7 +116,10 @@ function ImagePredictionPage() {
         />
       </div>
       <div className='button-container'>
-        <button className='main-btn'>
+        <button
+          className='main-btn'
+          onClick={clearCanvas}
+        >
           Clear
         </button>
         <button
@@ -116,9 +129,18 @@ function ImagePredictionPage() {
           Prediction
         </button>
       </div>
-      <div>
-        Prediction:
-      </div>
+      {prediction !== null && (
+          <div>
+            Prediction: 
+            <span className='prediction-result'>
+              {prediction === 1
+                ? 'Number is 0'
+                : 'Number is from 1 to 9'
+              }
+            </span>
+          </div>
+        )
+      }
     </div>
   )
 }
