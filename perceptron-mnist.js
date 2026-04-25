@@ -107,7 +107,13 @@ function displayMisclassified(misclassified) {
   }
 }
 
-const epochs = 34
+function normaliseData(data) {
+  return (
+    data.map(input => input.map(pixel => pixel / 255.0))
+  )
+}
+
+const epochs = 30
 const trainBatches = 10
 const testBatches = 2
 const INPUT_SIZE = 28 * 28
@@ -118,12 +124,12 @@ const testLabels = []
 
 for (let i = 0; i < trainBatches; i++) {
   const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/train-data-${i}.json`, 'utf8'))
-  trainInputs.push(...inputs)
+  trainInputs.push(...normaliseData(inputs))
   trainLabels.push(...labels)
 }
 for (let i = 0; i < testBatches; i++) {
   const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/test-data-${i}.json`, 'utf8'))
-  testInputs.push(...inputs)
+  testInputs.push(...normaliseData(inputs))
   testLabels.push(...labels)
 }
 

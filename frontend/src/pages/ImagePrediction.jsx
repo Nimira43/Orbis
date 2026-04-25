@@ -65,6 +65,8 @@ function ImagePredictionPage() {
     }
   }, [])
 
+  const normaliseData = (pixel) => pixel / 255.0
+
   const preprocessCanvas = () => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
@@ -72,7 +74,7 @@ function ImagePredictionPage() {
     const greyScaleData = []
 
     for (let i = 0; i < imageData.data.length; i += 4) {
-      greyScaleData.push(imageData.data[i])
+      greyScaleData.push(normaliseData(imageData.data[i]))
     }
     return greyScaleData
   }
@@ -83,7 +85,7 @@ function ImagePredictionPage() {
 
   const predict = () => {
     const inputs = preprocessCanvas()
-
+    console.log(inputs)
     let sum = binaryModel.bias
 
     binaryModel.weights.forEach((weight, i) => {
