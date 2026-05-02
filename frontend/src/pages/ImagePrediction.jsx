@@ -74,7 +74,7 @@ function ImagePredictionPage() {
     const greyScaleData = []
 
     for (let i = 0; i < imageData.data.length; i += 4) {
-      greyScaleData.push(normaliseData(imageData.data[i]))
+      greyScaleData.push(imageData.data[i])
     }
     return greyScaleData
   }
@@ -85,7 +85,7 @@ function ImagePredictionPage() {
 
   const predict = () => {
     const inputs = preprocessCanvas()
-    console.log(inputs)
+      .map(pixel => normaliseData(pixel))
     let sum = binaryModel.bias
 
     binaryModel.weights.forEach((weight, i) => {
@@ -93,7 +93,6 @@ function ImagePredictionPage() {
     })
 
     const prediction = activationFunction(sum)
-    console.log(prediction)
     setPrediction(prediction)
   }
 
@@ -104,6 +103,11 @@ function ImagePredictionPage() {
     ctx.fillStyle = '#000'
     ctx.fillRect(0, 0, WIDTH, HEIGHT)
     setPrediction(null)
+  }
+
+  const saveToTrainingSet = (label) => {
+    const input = preprocessCanvas()
+    const misclassifiedData = { input, label }
   }
 
   return (
@@ -140,6 +144,24 @@ function ImagePredictionPage() {
                 : 'Number is from 1 to 9'
               }
             </span>
+            <div className='button-container'>
+            <button
+              className='main-btn'
+              onClick={
+                () => saveToTrainingSet(1)
+              }
+            >
+              Save: Label 1
+            </button>
+            <button
+              className='main-btn'
+              onClick={
+                () => saveToTrainingSet(0)
+              }
+            >
+              Save: Label 0
+            </button>
+            </div>
           </div>
         )
       }
