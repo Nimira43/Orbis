@@ -108,6 +108,20 @@ function ImagePredictionPage() {
   const saveToTrainingSet = (label) => {
     const input = preprocessCanvas()
     const misclassifiedData = { input, label }
+
+    fetch('http://localhost:3001/save-misclassified', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(misclassifiedData)
+    })
+      .then(data => {
+        console.log('Data has been saved.')
+        clearCanvas()
+        alert('Saved successfully.')
+      })
+      .catch(error => console.error('Error saving data: ' + error))
   }
 
   return (
