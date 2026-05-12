@@ -12,9 +12,9 @@ class Perceptron {
     this.weights = Array(inputSize)
       .fill(0)
       .map(() => 
-        Math.random() * 0.3 - 0.1
+        Math.random() * 0.2 - 0.1
       )
-    this.bias = Math.random() * 0.3 - 0.1 
+    this.bias = Math.random() * 0.2 - 0.1 
     this.learningRate = learningRate
   }
 
@@ -113,7 +113,7 @@ function normaliseData(data) {
   )
 }
 
-const epochs = 30
+const epochs = 91
 const trainBatches = 10
 const testBatches = 2
 const INPUT_SIZE = 28 * 28
@@ -132,6 +132,12 @@ for (let i = 0; i < testBatches; i++) {
   testInputs.push(...normaliseData(inputs))
   testLabels.push(...labels)
 }
+
+const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/misclassified-data.json`, 'utf8'))
+
+trainInputs.push(...inputs.map(image => image.map(pixel => pixel > 20 ? pixel : 0)))
+
+trainLabels.push(...labels)
 
 const perceptron = new Perceptron(INPUT_SIZE, 0.01)
 
