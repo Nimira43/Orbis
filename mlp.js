@@ -24,16 +24,11 @@ class MLP {
   }
 
   softmax(outputs) {
-    return (
-      outputs.map((output, i) => {
-        const nominator = Math.exp(output)
-        const denominator = outputs.reduce((sum, val) =>
-          sum + Math.exp(val),
-          0
-        )
-        return nominator / denominator
-      })
-    )
+    const maxOutput = Math.max(...outputs)
+    const expValues = outputs.map(output => Math.exp(output - maxOutput))
+    const sumExpValues = expValues.reduce((sum, val) => sum + val, 0)
+
+    return expValues.map(val => val / sumExpValues)
   }
 
   forward(inputs) {
