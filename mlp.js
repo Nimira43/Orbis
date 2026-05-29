@@ -15,6 +15,8 @@ class MLP {
     ]
 
     this.biasesOutput = [0.1, 0.1]
+    this.outputSums = []
+    this.outputProbabilities = []
   }
 
   reluActivation(z) {
@@ -45,7 +47,7 @@ class MLP {
       z => this.reluActivation(z)
     )
 
-    const outputSums = this.weightsHiddenOutput.map((weights, i) => {
+    this.outputSums = this.weightsHiddenOutput.map((weights, i) => {
       return (
         weights.reduce((sum, weight, j) =>
           sum + (weight * hiddenActivations[j]),
@@ -53,13 +55,25 @@ class MLP {
         )
       )      
     })
-
-    return this.softmax(outputSums)
+    this.outputProbabilities = this.softmax(this.outputSums)
+  }
+  
+  backward(targets) {
+    const outputDeltas = this.outputProbabilities.map((probability, i) => probability - targets[i])
+    console.log('Output Deltas: ' + outputDeltas)
+  }
+  
+  train(inputs, targets) {
+    this.forward(inputs)
+    this.backward(targets)
   }
 }
 
 const mlp = new MLP()
 const image = [0.1, 0.2, 0.3, 0.4]
+const targets = [1, 0]
 
-const outputProbabilities = mlp.forward(image)
-console.log(outputProbabilities)
+mlp.train(image, targets), 
+
+console.log('Output Sums: ' + mlp.outputSums)
+console.log('Output Probabilities: ' + mlp.outputProbabilities)
