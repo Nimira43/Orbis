@@ -2,6 +2,8 @@
 
 class MLP {
   constructor() {
+    this.learningRate = 0.01
+
     this.weightsInputHidden = [
       [0.5, 0.5, 0.5, 0.5], // Weights for hidden neuron 1
       [-0.5, -0.5, -0.5, -0.5], // Weights for hidden neuron 2
@@ -18,6 +20,7 @@ class MLP {
     this.outputSums = []
     this.outputProbabilities = []
     this.hiddenSums = []
+    this.hiddenActivations = []
   }
 
   reluActivation(z) {
@@ -50,19 +53,22 @@ class MLP {
     
     console.log('Hidden sums: ' + this.hiddenSums)
 
-    const hiddenActivations = this.hiddenSums.map(
+    this.hiddenActivations = this.hiddenSums.map(
       z => this.reluActivation(z)
     )
 
     this.outputSums = this.weightsHiddenOutput.map((weights, i) => {
       return (
-        weights.reduce((sum, weight, j) =>
-          sum + (weight * hiddenActivations[j]),
-          this.biasesOutput[i]
+        weights.reduce((sum, weight, j) => 
+          sum + (weight * this.hiddenActivations[j]),
+            this.biasesOutput[i]
         )
       )      
     })
+    console.log('Output Sums: ' + this.outputSums)
+    
     this.outputProbabilities = this.softmax(this.outputSums)
+    console.log('Output Probabilities: ' + this.outputProbabilities)
   }
   
   backward(targets) {
@@ -73,11 +79,27 @@ class MLP {
   
     const hiddenDeltas = this.hiddenSums.map((z, i) => {
       const error = outputDeltas.reduce(
-        (sum, delta, j) => sum + delta * this.weightsHiddenOutput[j][i], 0 
+        (sum, delta, j) => 
+          sum + delta * this.weightsHiddenOutput[j][i], 0   
       )
       return error * this.reluDerivate(z)
     }) 
     console.log('Hidden Deltas: ' + hiddenDeltas)
+  
+    this.weightsHiddenOutput = this.weightsHiddenOutput.map((weights, i) => {
+      return (
+        weights.map((weight, j) => 
+          weight - this.learningRate * outputDeltas[i] * this.hiddenActivations[j]
+        )
+      )
+    })
+
+    this.biasesOutput = this.biasesOutput.map((bias, i) => {
+      return bias - this.learningRate * outputDeltas[i]  
+    })
+
+    console.log('Weights hidden output: ' + this.weightsHiddenOutput)
+    console.log('Biases output: ' + this.biasesOutput)
   }
   
   train(inputs, targets) {
@@ -90,7 +112,4 @@ const mlp = new MLP()
 const image = [0.1, 0.2, 0.3, 0.4]
 const targets = [1, 0]
 
-mlp.train(image, targets), 
-
-console.log('Output Sums: ' + mlp.outputSums)
-console.log('Output Probabilities: ' + mlp.outputProbabilities)
+mlp.train(image, targets)
