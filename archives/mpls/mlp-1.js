@@ -1,17 +1,19 @@
+// Multi-Layer Perceptron
+
 class MLP {
   constructor() {
     this.learningRate = 0.01
 
     this.weightsInputHidden = [
-      [0.5, 0.5, 0.5, 0.5], 
-      [-0.5, -0.5, -0.5, -0.5],
+      [0.5, 0.5, 0.5, 0.5], // Weights for hidden neuron 1
+      [-0.5, -0.5, -0.5, -0.5], // Weights for hidden neuron 2
     ]
 
     this.biasesHidden = [0.1, -0.1]
   
     this.weightsHiddenOutput = [
-      [1.0, -1.0],
-      [-1.0, 1.0],
+      [1.0, -1.0], // Weights for output neuron 1
+      [-1.0, 1.0] // Weights for output neuron 2
     ]
 
     this.biasesOutput = [0.1, 0.1]
@@ -49,6 +51,8 @@ class MLP {
       )
     })
     
+    console.log('Hidden sums: ' + this.hiddenSums)
+
     this.hiddenActivations = this.hiddenSums.map(
       z => this.reluActivation(z)
     )
@@ -61,14 +65,17 @@ class MLP {
         )
       )      
     })
+    console.log('Output Sums: ' + this.outputSums)
     
     this.outputProbabilities = this.softmax(this.outputSums)
+    console.log('Output Probabilities: ' + this.outputProbabilities)
   }
   
   backward(inputs, targets) {
     const outputDeltas = this.outputProbabilities.map(
       (probability, i) => probability - targets[i]
     )
+    console.log('Output Deltas: ' + outputDeltas)
   
     const hiddenDeltas = this.hiddenSums.map((z, i) => {
       const error = outputDeltas.reduce(
@@ -77,6 +84,7 @@ class MLP {
       )
       return error * this.reluDerivate(z)
     }) 
+    console.log('Hidden Deltas: ' + hiddenDeltas)
   
     this.weightsHiddenOutput = this.weightsHiddenOutput.map((weights, i) => {
       return  weights.map((weight, j) => 
@@ -97,6 +105,11 @@ class MLP {
     this.biasesHidden = this.biasesHidden.map((bias, i) => {
       return bias - this.learningRate * hiddenDeltas[i]
     })
+
+    console.log('Weights hidden -> output: ' + this.weightsHiddenOutput)
+    console.log('Biases output: ' + this.biasesOutput)
+    console.log('Weights input -> hidden: ' + this.weightsInputHidden)
+    console.log('Biases hidden: ' + this.biasesHidden)
   }
   
   train( inputs, targets) {
