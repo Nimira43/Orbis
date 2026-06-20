@@ -59,4 +59,23 @@ MLP {
   hiddenSums: [ 0.18101432859721814, 0.00045147963326771373 ],
   hiddenActivations: [ 0.18101432859721814, 0.00045147963326771373 ]
 }
+==============================================================
+CONCLUSIONS
+==============================================================
+Added seeded random initialisation using seedrandom for reproducible training
 
+Generalised the MLP to accept dynamic input, hidden, and output sizes
+
+Implemented proper weight and bias initialisation using randomised matrices
+
+Completed a full forward pass with ReLU + softmax
+
+Implemented a correct backpropagation algorithm
+
+Added weight and bias updates for both layers
+
+Added a training loop over multiple samples and epochs
+
+Logged before/after network parameters to verify learning
+
+Confirmed the network performs real gradient descent and updates correctly
