@@ -8,7 +8,7 @@
 
 ---
 
-## ⭐ 1. Hidden layer pre‑activation  
+## 1. Hidden layer pre‑activation  
 
 For each hidden neuron \( h_i \):
 
@@ -127,6 +127,7 @@ Learning rate: \( \eta = 0.01 \)
 \[
 W^{(ho)}_{ki} \leftarrow
 W^{(ho)}_{ki}
+
 - \eta \, \delta^{(o)}_k \, a^{(h)}_i
 \]
 

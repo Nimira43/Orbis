@@ -1,20 +1,44 @@
+const seedrandom = require('seedrandom')
+const seed = 'perc-1'
+
+seedrandom(seed, {global: true})
+
+function randomise() {
+  return Math.random() * 0.3 - 0.1
+}
+
 class MLP {
-  constructor() {
+  constructor(inputSize, hiddenSize, outputSize) {
     this.learningRate = 0.01
 
-    this.weightsInputHidden = [
-      [0.5, 0.5, 0.5, 0.5], 
-      [-0.5, -0.5, -0.5, -0.5],
-    ]
+    this.weightsInputHidden =
+      Array.from({
+        length: hiddenSize
+      }, () =>
+        Array.from({
+          length: inputSize
+        }, randomise)
+      )
 
-    this.biasesHidden = [0.1, -0.1]
+    this.biasesHidden = 
+      Array.from({
+        length: hiddenSize
+      }, randomise)
   
-    this.weightsHiddenOutput = [
-      [1.0, -1.0],
-      [-1.0, 1.0],
-    ]
+    this.weightsHiddenOutput = 
+      Array.from({
+        length: outputSize
+      }, () =>
+        Array.from({
+          length: hiddenSize
+        }, randomise)
+      )
 
-    this.biasesOutput = [0.1, 0.1]
+    this.biasesOutput = 
+      Array.from({
+        length: outputSize
+      }, randomise)
+    
     this.outputSums = []
     this.outputProbabilities = []
     this.hiddenSums = []
@@ -105,8 +129,47 @@ class MLP {
   }
 }
 
-const mlp = new MLP()
-const image = [0.1, 0.2, 0.3, 0.4]
-const targets = [1, 0]
+const inputSize = 4
+const hiddenSize = 2
+const outputSize = 2
 
-mlp.train(image, targets)
+const mlp = new MLP(inputSize, hiddenSize, outputSize)
+console.log('=========================================================')
+console.log('Before Training')
+console.log('=========================================================')
+console.log(mlp)
+
+const trainingData = [
+  {
+    inputs: [0.1, 0.2, 0.3, 0.4],
+    targets: [1, 0]
+  },
+  {
+    inputs: [0.5, 0.6, 0.7, 0.8],
+    targets: [0, 1]
+  },
+  {
+    inputs: [0.9, 0.1, 0.2, 0.3],
+    targets: [1, 0]
+  },
+  {
+    inputs: [0.4, 0.5, 0.6, 0.7],
+    targets: [0, 1]
+  }
+]
+
+const EPOCHS = 100
+
+for (let epoch = 0; epoch < EPOCHS; epoch++) {
+  for (let i = 0; i < trainingData.length; i++) {
+    mlp.train(
+      trainingData[i].inputs,
+      trainingData[i].targets
+    )
+  }
+}
+
+console.log('=========================================================')
+console.log('After Training')
+console.log('=========================================================')
+console.log(mlp)
