@@ -7,6 +7,10 @@ function randomise() {
   return Math.random() * 0.3 - 0.1
 }
 
+function mseLoss(outputs, targets) {
+  return 0.5 * outputs.reduce((sum, output, i) => sum + (output - targets[i]) ** 2, 0)
+}
+
 class MLP {
   constructor(inputSize, hiddenSize, outputSize) {
     this.learningRate = 0.01
@@ -65,11 +69,9 @@ class MLP {
 
   forward(inputs) {
     this.hiddenSums = this.weightsInputHidden.map((weights, i) => {
-      return (
-        weights.reduce((sum, weight, j) =>
-          sum + (weight * inputs[j]),
-          this.biasesHidden[i]
-        )
+      return weights.reduce((sum, weight, j) =>
+        sum + (weight * inputs[j]),
+        this.biasesHidden[i]
       )
     })
     
@@ -78,15 +80,14 @@ class MLP {
     )
 
     this.outputSums = this.weightsHiddenOutput.map((weights, i) => {
-      return (
-        weights.reduce((sum, weight, j) => 
-          sum + (weight * this.hiddenActivations[j]),
-            this.biasesOutput[i]
-        )
+      return weights.reduce((sum, weight, j) => 
+        sum + (weight * this.hiddenActivations[j]),
+        this.biasesOutput[i]
       )      
     })
     
     this.outputProbabilities = this.softmax(this.outputSums)
+    return this.outputProbabilities
   }
   
   backward(inputs, targets) {
@@ -132,12 +133,7 @@ class MLP {
 const inputSize = 4
 const hiddenSize = 2
 const outputSize = 2
-
 const mlp = new MLP(inputSize, hiddenSize, outputSize)
-console.log('=========================================================')
-console.log('Before Training')
-console.log('=========================================================')
-console.log(mlp)
 
 const trainingData = [
   {
@@ -161,15 +157,14 @@ const trainingData = [
 const EPOCHS = 100
 
 for (let epoch = 0; epoch < EPOCHS; epoch++) {
+  let totalLoss = 0 
+  
   for (let i = 0; i < trainingData.length; i++) {
-    mlp.train(
-      trainingData[i].inputs,
-      trainingData[i].targets
-    )
+    mlp.train(trainingData[i].inputs, trainingData[i].targets)
+    totalLoss += mseLoss(mlp.outputProbabilities, trainingData[i].targets)
+  }
+
+  if (epoch % 2 == 0) {
+    console.log(`Epoch ${epoch}, Loss : ${totalLoss / trainingData.length}`)
   }
 }
-
-console.log('=========================================================')
-console.log('After Training')
-console.log('=========================================================')
-console.log(mlp)
