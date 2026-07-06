@@ -1,0 +1,122 @@
+What’s New in Perceptron 3
+Separate datasets:
+
+trainInputs / trainLabels → original examples.
+
+testInputs / testLabels → unseen examples, slightly different coordinates.
+
+Training loop: now runs on the test set instead of the training set. This forces Orbis to adapt to new patterns.
+
+Accuracy report: measures performance on the test set, not just memorised training data.
+
+Results
+-------
+Epoch:  0
+Perceptron {
+  weights: [ 0.20000000000000004, 0.30000000000000004 ],
+  bias: 0.5,
+  learningRate: 0.1
+}
+Epoch:  1
+Perceptron {
+  weights: [ 0.10000000000000003, 0.3 ],
+  bias: 0.4,
+  learningRate: 0.1
+}
+Epoch:  2
+Perceptron {
+  weights: [ 2.7755575615628914e-17, 0.29999999999999993 ],
+  bias: 0.30000000000000004,
+  learningRate: 0.1
+}
+Epoch:  3
+Perceptron {
+  weights: [ 0.10000000000000003, 0.4999999999999999 ],
+  bias: 0.30000000000000004,
+  learningRate: 0.1
+}
+Epoch:  4
+Perceptron {
+  weights: [ 2.7755575615628914e-17, 0.49999999999999983 ],
+  bias: 0.20000000000000004,
+  learningRate: 0.1
+}
+Epoch:  5
+Perceptron {
+  weights: [ -0.09999999999999998, 0.4999999999999998 ],
+  bias: 0.10000000000000003,
+  learningRate: 0.1
+}
+Epoch:  6
+Perceptron {
+  weights: [ -0.19999999999999998, 0.19999999999999973 ],
+  bias: 2.7755575615628914e-17,
+  learningRate: 0.1
+}
+Epoch:  7
+Perceptron {
+  weights: [ -0.09999999999999998, 0.3999999999999997 ],
+  bias: 2.7755575615628914e-17,
+  learningRate: 0.1
+}
+Epoch:  8
+Perceptron {
+  weights: [ 2.7755575615628914e-17, 0.5999999999999996 ],
+  bias: 2.7755575615628914e-17,
+  learningRate: 0.1
+}
+Epoch:  9
+Perceptron {
+  weights: [ -0.09999999999999998, 0.5999999999999996 ],
+  bias: -0.09999999999999998,
+  learningRate: 0.1
+}
+TESTING ACCURACY: 60%
+
+-------
+Verdict
+-------
+Epoch Evolution
+Epoch 0 → 2
+
+Starts with [0.2, 0.3] and bias 0.5.
+
+Quickly collapses toward [~0, 0.3] with bias 0.3.
+
+She’s undecided: x1 loses influence, x2 holds steady.
+
+Epoch 3 → 5
+
+x2 grows stronger (0.3 → 0.5).
+
+x1 dips negative (0 → -0.1).
+
+Bias slides down to 0.1.
+
+Orbis leans on x2 as the pencil‑indicator, but x1 starts whispering “eraser.”
+
+Epoch 6 → 9
+
+x1 oscillates around -0.1 to -0.2.
+
+x2 climbs to 0.6.
+
+Bias drifts negative (0 → -0.1).
+
+The tug‑of‑war continues: x2 says “pencil,” x1 says “eraser,” bias tilts toward eraser.
+
+🎭 Verdict
+Feature 1 (x1) → weak negative weight, nudging toward “eraser.”
+
+Feature 2 (x2) → stronger positive weight, nudging toward “pencil.”
+
+Bias → slightly negative, defaulting to “eraser” unless x2 is high.
+
+This creates a messier decision boundary than Perceptron 2. Instead of clean separation, Orbis struggles with the test set — hence the 60% accuracy.
+
+🛠 What It Means
+Generalisation gap → She memorised the training set perfectly, but falters on unseen data.
+
+Oscillations → Weights don’t stabilise; they swing between epochs, chasing conflicting signals.
+
+Bias drift → Negative bias hurts accuracy when pencils have moderate x2 values.
