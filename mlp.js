@@ -18,6 +18,10 @@ function normaliseData(data) {
   )
 }
 
+function oneHotEncode(label) {
+  return Array.from({length: 10}, (_, i) => i == label ? 1 : 0)
+}
+
 class MLP {
   constructor(inputSize, hiddenSize, outputSize) {
     this.learningRate = 0.01
@@ -155,6 +159,9 @@ for (let i = 0; i < testBatches; i++) {
   testInputs.push(...normaliseData(inputs))
   testLabels.push(...labels)
 }
+
+const trainLabelsEncoded = trainLabels.map(label => oneHotEncode(label))
+const testLabelsEncoded = testLabels.map(label => oneHotEncode(label))
 
 const inputSize = trainInputs[0].length
 const hiddenSize = 32
