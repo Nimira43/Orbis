@@ -144,13 +144,10 @@ const perceptron = new Perceptron(INPUT_SIZE, 0.01)
 for (let epoch = 0; epoch < epochs; epoch++) {
   shuffleArray(trainInputs, trainLabels)
   perceptron.train(trainInputs, trainLabels)
-  // perceptron.train(testInputs, testLabels)
 
-  // const trainingAccuracy = perceptron.calculateAccuracy(trainInputs, trainLabels)
   const testingAccuracy = perceptron.calculateAccuracy(testInputs, testLabels)
 
   console.log(`EPOCH: ${epoch + 1}`)
-  // console.log(`Training Accuracy: ${trainingAccuracy}%`)
   console.log(`Testing Accuracy: ${testingAccuracy}%`)
   console.log('---------------------------')
 }
@@ -158,6 +155,3 @@ for (let epoch = 0; epoch < epochs; epoch++) {
 const misclassified = findMisclassified(testInputs, testLabels, perceptron)
 displayMisclassified(misclassified)
 perceptron.saveModel('./frontend/public/mnist/binary-model.json')
-
-// console.log(perceptron.weights)
-// console.log(perceptron.bias)
