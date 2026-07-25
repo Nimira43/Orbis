@@ -23,9 +23,9 @@ function oneHotEncode(label) {
 }
 
 class MLP {
-  constructor(inputSize, hiddenSize, outputSize) {
-    this.learningRate = 0.01
-
+  constructor(inputSize, hiddenSize, outputSize, learningRate = 0.01) {
+    this.learningRate = learningRate
+    
     this.weightsInputHidden =
       Array.from({
         length: hiddenSize
@@ -159,20 +159,21 @@ class MLP {
   }
 }
 
-const epochs = 8
-const trainBatches = 2
-const testBatches = 2
+const EPOCHS = 34
+const LEARNING_RATE = 0.008
+const TRAIN_BATCHES = 8
+const TEST_BATCHES = 2
 const trainInputs = []
 const testInputs = []
 const trainLabels = []
 const testLabels = []
 
-for (let i = 0; i < trainBatches; i++) {
+for (let i = 0; i < TRAIN_BATCHES; i++) {
   const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/train-data-${i}.json`, 'utf8'))
   trainInputs.push(...normaliseData(inputs))
   trainLabels.push(...labels)
 }
-for (let i = 0; i < testBatches; i++) {
+for (let i = 0; i < TEST_BATCHES; i++) {
   const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/test-data-${i}.json`, 'utf8'))
   testInputs.push(...normaliseData(inputs))
   testLabels.push(...labels)
@@ -182,12 +183,12 @@ const trainLabelsEncoded = trainLabels.map(label => oneHotEncode(label))
 const testLabelsEncoded = testLabels.map(label => oneHotEncode(label))
 
 const inputSize = trainInputs[0].length
-const hiddenSize = 32
+const hiddenSize = 64
 const outputSize = 10
 
-const mlp = new MLP(inputSize, hiddenSize, outputSize)
+const mlp = new MLP(inputSize, hiddenSize, outputSize, LEARNING_RATE)
 
-for (let epoch = 0; epoch <= epochs; epoch++) {
+for (let epoch = 0; epoch <= EPOCHS; epoch++) {
   let totalLoss = 0
   for (let i = 0; i < trainInputs.length; i++) {
     mlp.train(trainInputs[i], trainLabelsEncoded[i])
@@ -216,5 +217,5 @@ for (let epoch = 0; epoch <= epochs; epoch++) {
   }
 }
 
-mlp.saveModel('./frontend/public/mnist/mlp-mnist-mode.json')
+mlp.saveModel('./frontend/public/mnist/mlp-mnist-model.json')
 
