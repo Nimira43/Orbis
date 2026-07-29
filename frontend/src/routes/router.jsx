@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import HomePage from '../pages/Home.jsx'
-import ImagePredictionPage from '../pages/ImagePrediction.jsx'
 import PreviewTestImagesPage from '../pages/PreviewTestImages.jsx'
+import ImagePredictionPage from '../pages/ImagePrediction.jsx'
+import ImagePredictionMlpPage from '../pages/ImagePredictionMlp.jsx'
 
 function Router() {
   return (
@@ -18,6 +19,10 @@ function Router() {
         <Route
           path='/image-prediction'
           element={<ImagePredictionPage />}
+        />
+        <Route
+          path='/image-prediction-mlp'
+          element={<ImagePredictionMlpPage />}
         />
       </Routes>
     </main>
