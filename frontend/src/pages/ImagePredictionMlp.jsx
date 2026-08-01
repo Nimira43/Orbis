@@ -80,16 +80,34 @@ function ImagePredictionMlpPage() {
   }
 
   const activationFunction = (sum) => {
-    return sum >= 0 ? 1 : 0
+    return Math.max(0, sum)
+  }
+
+  const softmax = (outputs) => {
+    const maxOutput = Math.max(...outputs)
+    const expValues = outputs.map(output => Math.exp(output - maxOutput))
+    const sumExpValues = expValues.reduce((sum, val) => sum + val, 0)
+
+    return expValues.map(val => val / sumExpValues)
   }
 
   const predict = () => {
     const inputs = preprocessCanvas()
       .map(pixel => normaliseData(pixel))
     
-    console.log(model)
+    const hiddenSums = model.weightsInputHidden.map((weights, i) => {
+      return weights.reduce((sum, weight, j) => sum + (weight * inputs[j]), model.biasesHidden[i])
+    })
     
-    // setPrediction(prediction)
+    const hiddenActivations = hiddenSums.map(z => activationFunction(z))
+
+    const outputSums = model.weightsHiddenOutput.map((weights, i) => {
+      return weights.reduce((sum, weight, j) => sum + (weight * hiddenActivations[j]), model.biasesOutput[i])
+    })
+
+    const outputProbabilities = softmax(outputSums)
+    const prediction = outputProbabilities.indexOf(Math.max(...outputProbabilities))
+    setPrediction(prediction)
   }
 
   const clearCanvas = () => {
@@ -147,31 +165,21 @@ function ImagePredictionMlpPage() {
       </div>
       {prediction !== null && (
           <div>
-            Prediction: 
-            <span className='prediction-result'>
-              {prediction === 1
-                ? 'Number is 0'
-                : 'Number is from 1 to 9'
-              }
-            </span>
-            <div className='button-container'>
-            <button
-              className='main-btn'
-              onClick={
-                () => saveToTrainingSet(1)
-              }
-            >
-              Save: Label 1
-            </button>
-            <button
-              className='main-btn'
-              onClick={
-                () => saveToTrainingSet(0)
-              }
-            >
-              Save: Label 0
-            </button>
-            </div>
+            Prediction: {prediction}
+            {/* <div className='button-container'>
+              <button
+                className='main-btn'
+                onClick={() => saveToTrainingSet(1)}
+              >
+                Save: Label 1
+              </button>
+              <button
+                className='main-btn'
+                onClick={() => saveToTrainingSet(0)}
+              >
+                Save: Label 0
+              </button>
+            </div> */}
           </div>
         )
       }
