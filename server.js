@@ -44,6 +44,42 @@ app.post('/save-misclassified', (req, res) => {
   }) 
 })
 
+app.post('/save-misclassified-mlp', (req, res) => {
+  const { input, label } = req.body
+  const filePath = path.join(__dirname, 'datasets', 'mnist', 'misclassified-data-mlp.json')
+
+  fs.readFile(filePath, (err, data) => {
+    if (err && err.code === 'ENOENT') {
+      const data = { labels: [label], inputs: [input] }
+      const stringData = JSON.stringify(data, null, 0)
+
+      fs.writeFile(filePath, stringData, (err) => {
+        if (err) {
+          res.status(500).send('Error saving data.')
+        } else {
+          res.status(200).send('Data saved successfully.')
+        }
+      })
+    } else if (err) {
+      res.status(500).send('Error reading file.')
+    } else {
+      const jsonData = JSON.parse(data)
+      jsonData.labels.push(label)
+      jsonData.inputs.push(input)
+
+      fs.writeFile(
+        filePath, JSON.stringify(jsonData, null, 0), (err) => {
+          if (err) {
+            res.status(500).send('Error saving file.')
+          } else {
+            res.status(200).send('Data saved successfully.')
+          }
+        }
+      )
+    }
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`Server running on Port: ${PORT}`)
 })

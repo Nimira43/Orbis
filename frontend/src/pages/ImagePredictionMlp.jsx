@@ -123,7 +123,7 @@ function ImagePredictionMlpPage() {
     const input = preprocessCanvas()
     const misclassifiedData = { input, label }
 
-    fetch('http://localhost:3001/save-misclassified', {
+    fetch('http://localhost:3001/save-misclassified-mlp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -166,20 +166,19 @@ function ImagePredictionMlpPage() {
       {prediction !== null && (
           <div>
             Prediction: {prediction}
-            {/* <div className='button-container'>
-              <button
-                className='main-btn'
-                onClick={() => saveToTrainingSet(1)}
-              >
-                Save: Label 1
-              </button>
-              <button
-                className='main-btn'
-                onClick={() => saveToTrainingSet(0)}
-              >
-                Save: Label 0
-              </button>
-            </div> */}
+            <div className='button-container'>
+              {
+                Array.from({ length: 10 }, (_, i) => i)
+                  .map(label =>
+                    <button
+                      className='main-btn'
+                      onClick={() => saveToTrainingSet(label)}
+                    >
+                      Save: Label {label}
+                    </button>      
+                  )
+              }
+            </div>
           </div>
         )
       }
