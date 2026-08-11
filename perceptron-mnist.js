@@ -134,9 +134,7 @@ for (let i = 0; i < testBatches; i++) {
 }
 
 const { inputs, labels } = JSON.parse(fs.readFileSync(`./datasets/mnist/misclassified-data.json`, 'utf8'))
-
 trainInputs.push(...inputs.map(image => image.map(pixel => pixel > 20 ? pixel : 0)))
-
 trainLabels.push(...labels)
 
 const perceptron = new Perceptron(INPUT_SIZE, 0.01)
